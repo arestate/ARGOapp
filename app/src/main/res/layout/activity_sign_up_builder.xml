@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp">
+
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="50sp"/>
+
+    <EditText
+        android:id="@+id/edtLicenseNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="License No"
+        android:inputType="number"
+        android:layout_marginTop="24dp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        android:layout_marginTop="24dp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email ID"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtContactNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Contact Number"
+        android:inputType="phone"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtlogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Logo"
+
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/edtWebsite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Your Website"
+        android:inputType="text"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="20dp"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>
