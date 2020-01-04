@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AreaSelection"></activity>
+        <activity android:name=".PropertyDetails"></activity>
+        <activity android:name=".AreaSelection" />
         <activity
             android:name=".VerificationCode"
             android:label="Verification Code" />
