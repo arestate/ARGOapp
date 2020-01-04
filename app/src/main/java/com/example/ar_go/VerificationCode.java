@@ -51,6 +51,7 @@ public class VerificationCode extends AppCompatActivity {
 
                     Intent i = new Intent(VerificationCode.this,ResetPassword.class);
                     i.putExtra("id",id);
+                    i.putExtra("type",getIntent().getStringExtra("type"));
                     startActivity(i);
 
                 }

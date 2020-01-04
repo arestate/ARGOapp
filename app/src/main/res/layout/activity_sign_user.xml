@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,17 +12,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:paddingRight="40dp"
-    android:paddingLeft="40dp">
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="#E8E8E8">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/txtSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SIGN UP"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="50sp"/>
+        android:textSize="50sp"/>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvname"
+        android:text="Name"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/edtName"
@@ -25,11 +42,22 @@
         android:ems="10"
         android:hint="Name"
         android:inputType="text"
-
+        android:background="@drawable/edittext_background"
         android:padding="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="6dp"
         android:paddingBottom="20dp"
-        android:gravity="center"/>
+        android:textSize="16sp"
+        android:gravity="left"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvemail"
+        android:text="Email ID"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"/>
 
     <EditText
     android:id="@+id/edtEmail"
@@ -38,10 +66,22 @@
     android:ems="10"
     android:hint="Email ID"
     android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:layout_marginBottom="6dp"
         android:paddingBottom="20dp"
-    android:padding="16dp"
-    android:gravity="center"/>
+        android:textSize="16sp"
+    android:gravity="left"
+        android:background="@drawable/edittext_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvcontactno"
+        android:text="Contact Number"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/edtContactNo"
@@ -50,11 +90,22 @@
         android:ems="10"
         android:hint="Contact Number"
         android:inputType="phone"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:paddingBottom="20dp"
         android:padding="16dp"
-        android:gravity="center"/>
+        android:layout_marginBottom="6dp"
+        android:paddingBottom="20dp"
+        android:textSize="16sp"
+        android:gravity="left"
+        android:background="@drawable/edittext_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvaddress"
+        android:text="Address"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/edtAddress"
@@ -64,11 +115,22 @@
         android:hint="Address"
         android:inputType="textMultiLine"
         android:lines="4"
-
-        android:layout_marginBottom="16dp"
-        android:paddingBottom="20dp"
+        android:background="@drawable/edittext_background"
         android:padding="16dp"
-        android:gravity="center"/>
+        android:layout_marginBottom="6dp"
+        android:paddingBottom="20dp"
+        android:textSize="16sp"
+        android:gravity="left"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvpassword"
+        android:text="Password"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/edtPassword"
@@ -77,22 +139,58 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-
-        android:layout_marginBottom="16dp"
-        android:paddingBottom="20dp"
+        android:background="@drawable/edittext_background"
         android:padding="16dp"
-        android:gravity="center"/>
+        android:layout_marginBottom="6dp"
+        android:paddingBottom="20dp"
+        android:textSize="16sp"
+        android:gravity="left"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <CheckBox
+            android:id="@+id/txtcheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I agree to the"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="17sp"/>
+
+
+        <TextView
+            android:id="@+id/txtcheck2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terms and Conditions"
+            android:textColor="@android:color/holo_blue_light"
+            android:gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textSize="17sp"
+            android:onClick="ClickonSignUp"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
+        android:textAllCaps="false"
         android:background="@android:color/holo_blue_dark"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:height="60dp"/>
 
     </LinearLayout>
+
+</ScrollView>

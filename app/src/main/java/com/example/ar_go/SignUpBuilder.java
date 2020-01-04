@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -25,7 +27,8 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
     EditText edtPassword;
     EditText edtCnfPassword;
     EditText edtWebsite;
-    Button btnSignup;
+    CheckBox chkAgree;
+    Button btnSignUp;
 
     Webservice_Volley volley;
 
@@ -41,47 +44,88 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         edtCnfPassword = (EditText) findViewById(R.id.edtConfirm);
         edtWebsite = (EditText) findViewById(R.id.edtWebsite);
-        btnSignup = (Button) findViewById(R.id.btnSignUp);
+        chkAgree = (CheckBox) findViewById(R.id.chkAgree);
+
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
         volley = new Webservice_Volley(this, this);
 
 
-    btnSignup.setOnClickListener(new View.OnClickListener()
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    {
+                if (!CommonFunctions.checkstring(edtName.getText().toString())) {
+                    edtName.setError("Enter your name");
+                    edtName.requestFocus();
+                    return;
+                }
 
-        @Override
-        public void onClick (View view){
+                if (!CommonFunctions.checkemail(edtEmail.getText().toString())) {
+                    edtEmail.setError("Enter your Valid  Email");
+                    edtEmail.requestFocus();
+                    return;
+                }
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("b_name",edtName.getText().toString());
-        params.put("b_email", edtEmail.getText().toString());
-        params.put("b_contactno", edtContactNo.getText().toString());
-        params.put("b_address", edtAddress.getText().toString());
-        params.put("b_password", edtPassword.getText().toString());
+                if (!CommonFunctions.checkmobilenumber(edtContactNo.getText().toString())) {
+                    edtContactNo.setError("Enter 10 digit Mobile Number");
+                    edtContactNo.requestFocus();
+                    return;
+                }
 
-        String url = Constants.Webserive_Url + "SignUpBuilder.php";
+                if (!CommonFunctions.checkstring(edtAddress.getText().toString())) {
+                    edtAddress.setError("Enter your Address");
+                    edtAddress.requestFocus();
+                    return;
+                }
 
-        volley.CallVolley(url, params, "SignUpBuilder");
+                if (!chkAgree.isChecked()) {
+                    Toast.makeText(SignUpBuilder.this, "Please agree terms & conditions", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
 
-    }
+
+
+
+
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("b_name", edtName.getText().toString());
+                    params.put("b_email", edtEmail.getText().toString());
+                    params.put("b_contactno", edtContactNo.getText().toString());
+                    params.put("b_address", edtAddress.getText().toString());
+                    params.put("b_password", edtPassword.getText().toString());
+                    params.put("b_licenseno", "");
+                    params.put("b_website", edtWebsite.getText().toString());
+                    params.put("b_logo", "");
+                    params.put("b_status", "1");
+
+
+                    String url = Constants.Webserive_Url + "builder_registration.php";
+
+                    volley.CallVolley(url, params, "builder_registration");
+
+
+            }
+
     });
-}
+            }
+
+
 
     @Override
     public void getData(JSONObject jsonObject, String tag) {
 
-            try {
+        try {
 
-                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+        }
 
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
-
-
-
 

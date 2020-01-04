@@ -8,17 +8,18 @@
     android:orientation="vertical"
     android:gravity="center"
     android:paddingLeft="40dp"
-    android:paddingRight="40dp">
+    android:paddingRight="40dp"
+    android:background="#E8E8E8">
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/txtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LOGIN"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="30sp"/>
+        android:textSize="30sp"/>-->
 
     <EditText
         android:id="@+id/edtEmail"
@@ -29,7 +30,9 @@
         android:inputType="text"
         android:layout_marginTop="24dp"
         android:padding="16dp"
+        android:background="@drawable/edittext_background"
         android:gravity="center"/>
+
 
 
     <EditText
@@ -41,16 +44,17 @@
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:gravity="center"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/edittext_background"/>
 
     <TextView
         android:id="@+id/txtForgotPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Forgot Password?"
-
-        android:textColor="@android:color/black"
-        android:gravity="right"
+        android:onClick="ClickonFP"
+        android:textColor="@android:color/holo_blue_light"
+        android:gravity="left"
         android:padding="16dp"
         android:textSize="16dp"/>
 
@@ -59,23 +63,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:textAllCaps="false"
         android:layout_gravity="center"
         android:background="@android:color/holo_blue_dark"
         android:textColor="@android:color/white"
+        android:onClick="ClickonFP"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:height="60dp"/>
 
-    <TextView
-        android:id="@+id/txtNewUser"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? SIGN UP"
-        android:textColor="@android:color/black"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:padding="16dp"
-        android:textSize="17sp"
-        android:onClick="ClickOnSignup"/>
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/txtSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="17sp"/>
+
+
+        <TextView
+            android:id="@+id/txtSignUp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SignUp"
+            android:textColor="@android:color/holo_blue_light"
+            android:gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textSize="17sp"
+            android:onClick="ClickonSignUp"/>
+
+
+    </LinearLayout>
+
+
 
 
 

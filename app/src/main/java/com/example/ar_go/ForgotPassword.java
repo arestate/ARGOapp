@@ -28,6 +28,9 @@ public class ForgotPassword extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
 
+    String type = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +39,14 @@ public class ForgotPassword extends AppCompatActivity implements DataInterface {
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
+        type = getIntent().getStringExtra("type");
+
 
         volley = new Webservice_Volley(this, this);
+
+
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,13 +57,22 @@ public class ForgotPassword extends AppCompatActivity implements DataInterface {
                 }
 
 
+                if (type.equalsIgnoreCase("user")) {
+                    String url = Constants.Webserive_Url + "user_forgotpassword.php";
 
-                String url = Constants.Webserive_Url + "user_forgotpassword.php";
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("u_email", edtEmail.getText().toString());
 
-                HashMap<String, String> params = new HashMap<>();
-                params.put("u_email", edtEmail.getText().toString());
+                    volley.CallVolley(url, params, "user_forgotpassword");
+                }
+                else {
+                    String url = Constants.Webserive_Url + "builder_forgotpassword.php";
 
-                volley.CallVolley(url, params, "user_forgotpassword");
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("b_email", edtEmail.getText().toString());
+
+                    volley.CallVolley(url, params, "builder_forgotpassword");
+                }
 
 
 
@@ -78,6 +96,7 @@ public class ForgotPassword extends AppCompatActivity implements DataInterface {
                 Intent i = new Intent(ForgotPassword.this,VerificationCode.class);
                 i.putExtra("id",id);
                 i.putExtra("otp",otp);
+                i.putExtra("type",type);
                 startActivity(i);
 
             }

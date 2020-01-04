@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -24,7 +25,7 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
     EditText edtPassword;
     Button btnLogin;
     TextView txtForgotPassword;
-    TextView txtSignup;
+    TextView txtSignup2;
 
     Webservice_Volley volley;
 
@@ -33,10 +34,10 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_builder);
         edtEmail =(EditText)findViewById(R.id.edtEmail);
-        edtPassword =(EditText)findViewById(R.id.edtPassword);
+        edtPassword =(EditText)findViewById(R.id.edtPass);
         btnLogin =(Button) findViewById(R.id.btnLogin);
         txtForgotPassword=(TextView)findViewById(R.id.txtForgotPassword);
-        txtSignup= (TextView)findViewById(R.id.btnSignUp);
+        txtSignup2= (TextView)findViewById(R.id.btnSignUp);
 
         volley = new Webservice_Volley(this,this);
 
@@ -44,13 +45,25 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
             @Override
             public void onClick(View view) {
 
+                if (!CommonFunctions.checkemail(edtEmail.getText().toString())) {
+                    edtEmail.setError("Enter your Valid  Email");
+                    edtEmail.requestFocus();
+                    return;
+                }
+
+                if (!CommonFunctions.checkpassword(edtPassword.getText().toString())) {
+                    edtPassword.setError("Enter password atleast 6 char long");
+                    edtPassword.requestFocus();
+                    return;
+                }
+
                 HashMap<String,String> params = new HashMap<>();
                 params.put("b_email",edtEmail.getText().toString());
                 params.put("b_password",edtPassword.getText().toString());
 
-                String url = Constants.Webserive_Url + "login.php";
+                String url = Constants.Webserive_Url + "builder_login.php";
 
-                volley.CallVolley(url,params,"login");
+                volley.CallVolley(url,params,"builder_login");
 
 
             }
@@ -58,7 +71,7 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
 
     }
 
-    public void ClickOnSignup(View view) {
+    public void ClickonSignUp(View view) {
         Intent i= new Intent(LoginBuilder.this,SignUpBuilder.class);
         startActivity(i);
     }
@@ -74,5 +87,12 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
             e.printStackTrace();
         }
 
+    }
+
+    public void ClickonFP(View view) {
+
+        Intent i = new Intent(LoginBuilder.this, ForgotPassword.class);
+        i.putExtra("type","builder");
+        startActivity(i);
     }
 }

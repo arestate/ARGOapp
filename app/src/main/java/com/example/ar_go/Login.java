@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity implements DataInterface {
 
     EditText edtEmail, edtPass;
     Button btnLogin;
-    TextView txtForgotPassword, txtNewUser;
+    TextView txtForgotPassword, txtNewUser2;
 
     Webservice_Volley volley;
 
@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity implements DataInterface {
         edtPass = (EditText) findViewById(R.id.edtPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword);
-        txtNewUser = (TextView) findViewById(R.id.txtNewUser);
+        txtNewUser2 = (TextView) findViewById(R.id.txtNewUser2);
 
         volley = new Webservice_Volley(this, this);
 
@@ -48,8 +48,8 @@ public class Login extends AppCompatActivity implements DataInterface {
                 params.put("u_email", edtEmail.getText().toString());
                 params.put("u_password", edtPass.getText().toString());
 
-                String url = Constants.Webserive_Url + "login.php";
-                volley.CallVolley(url, params, "login");
+                String url = Constants.Webserive_Url + "user_login.php";
+                volley.CallVolley(url, params, "user_login");
             }
         });
     }
@@ -75,6 +75,7 @@ public class Login extends AppCompatActivity implements DataInterface {
     public void ClickonFP(View view) {
 
         Intent i = new Intent(Login.this, ForgotPassword.class);
+        i.putExtra("type","user");
         startActivity(i);
     }
 }

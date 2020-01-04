@@ -29,6 +29,8 @@ public class ResetPassword extends AppCompatActivity implements DataInterface {
     Webservice_Volley volley;
     private String userid;
 
+    String type = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class ResetPassword extends AppCompatActivity implements DataInterface {
         btnReset = (Button) findViewById(R.id.btnReset);
 
         volley = new Webservice_Volley(this, this);
+
+        type = getIntent().getStringExtra("type");
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +62,27 @@ public class ResetPassword extends AppCompatActivity implements DataInterface {
                     return;
                 }
 
+                if (type.equalsIgnoreCase("user")) {
 
+                    String url = Constants.Webserive_Url + "user_resetpassword.php";
 
-                String url = Constants.Webserive_Url + "user_resetpassword.php";
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("u_id", userid);
+                    params.put("u_password", edtNewPass.getText().toString());
 
-                HashMap<String, String> params = new HashMap<>();
-                params.put("u_id", userid);
-                params.put("u_password", edtNewPass.getText().toString());
+                    volley.CallVolley(url, params, "user_resetpassword");
+                }
+                else {
 
-                volley.CallVolley(url, params, "user_resetpassword");
+                    String url = Constants.Webserive_Url + "builder_resetpassword.php";
 
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("b_id", userid);
+                    params.put("b_password", edtNewPass.getText().toString());
+
+                    volley.CallVolley(url, params, "builder_resetpassword");
+
+                }
 
 
             }
@@ -81,10 +96,24 @@ public class ResetPassword extends AppCompatActivity implements DataInterface {
 
             if (jsonObject.getString("response").equalsIgnoreCase("1")) {
 
-                Intent i = new Intent(ResetPassword.this, Login.class);
+                Intent i = new Intent(ResetPassword.this, UserSelection.class);
                 startActivity(i);
 
                 finishAffinity();
+
+                /*if (type.equalsIgnoreCase("user")) {
+
+                    Intent i = new Intent(ResetPassword.this, Login.class);
+                    startActivity(i);
+
+                    finishAffinity();
+                }
+                else {
+                    Intent i = new Intent(ResetPassword.this, LoginBuilder.class);
+                    startActivity(i);
+
+                    finishAffinity();
+                }*/
 
             }
 

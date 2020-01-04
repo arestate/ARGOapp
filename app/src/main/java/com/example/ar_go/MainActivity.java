@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
         btnSignUp=(Button)findViewById(R.id.btnSignUp);
 
 
-        volley= new Webservice_Volley(this,this);
+        volley = new Webservice_Volley(this,this);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
                     edtPassword.setError("Enter your Password");
                     return;
                 }
-
 
                 HashMap<String, String> params = new HashMap<>();
                 params.put("u_name", edtName.getText().toString());
