@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UserEnquiry"></activity>
+        <activity android:name=".Feedback"></activity>
         <activity android:name=".PropertyDetails" />
         <activity android:name=".AreaSelection" />
         <activity
