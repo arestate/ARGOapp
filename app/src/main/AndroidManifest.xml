@@ -12,18 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PropertyDetails"></activity>
-        <activity android:name=".AreaSelection" />
+
+        <activity android:name=".PropertyDetails"
+            android:label="Property Details" />
+
+        <activity android:name=".HomePage"
+            android:label="Home Page"/>
+
+        <activity android:name=".AreaSelection"
+            android:label="Area Selection"/>
+
         <activity
             android:name=".VerificationCode"
             android:label="Verification Code" />
+
         <activity
             android:name=".ResetPassword"
             android:label="Reset Password" />
+
         <activity
             android:name=".ForgotPassword"
             android:label="Forgot Password"
             android:windowSoftInputMode="adjustResize" />
+
         <activity android:name=".UserSelection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,18 +42,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginBuilder"
             android:label="Login" />
+
         <activity
             android:name=".SignUpBuilder"
             android:label="Sign Up" />
+
         <activity
             android:name=".Login"
             android:label="Login" />
+
         <activity
             android:name=".MainActivity"
             android:label="Sign Up" />
+
     </application>
 
 </manifest>
