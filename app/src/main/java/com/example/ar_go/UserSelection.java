@@ -15,7 +15,7 @@ public class UserSelection extends AppCompatActivity {
     }
 
     public void ClickOnBuilderLayout(View view) {
-        Intent i = new Intent(UserSelection.this, PropertyDetails.class);
+        Intent i = new Intent(UserSelection.this, HomePage.class);
         startActivity(i);
     }
 
