@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddProperty"
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="20dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"/>
+        <EditText
+            android:id="@+id/edt_num1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Name" />
+        <EditText
+            android:id="@+id/edt_num2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Address"
+            android:lines="2"/>
+        <EditText
+            android:id="@+id/edt_num3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Dimension" />
+        <EditText
+            android:id="@+id/edt_num4"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Type" />
+        <EditText
+            android:id="@+id/edt_num5"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Category" />
+        <EditText
+            android:id="@+id/edt_num6"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Plan File" />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+</LinearLayout>
