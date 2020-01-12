@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Feedback"></activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Feedback" />
         <activity android:name=".PropertyDetails" />
         <activity android:name=".AreaSelection" />
         <activity

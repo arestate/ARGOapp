@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/hicon"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ui"
+            android:title="Favourites" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/rs"
+            android:title="Recent Search" />
+
+    </group>
+
+    <item android:title="Property Search">
+        <menu>
+            <item
+                android:id="@+id/nav_shareC"
+                android:icon="@drawable/comicon"
+                android:title="Commercial Search " />
+
+            <item
+                android:id="@+id/nav_shareR"
+                android:icon="@drawable/apartment"
+                android:title="Residential Search" />
+            <item
+                android:id="@+id/nav_shareB"
+                android:icon="@drawable/bui"
+                android:title="Builder Name Search" />
+        </menu>
+    </item>
+
+    <group android:id="@+id/group1">
+
+    <item
+        android:id="@+id/nav_shareVP"
+        android:icon="@drawable/us"
+        android:title="View Profile" />
+
+    <item
+        android:id="@+id/nav_shareE"
+        android:icon="@drawable/support"
+        android:title="Enquiry" />
+    <item
+        android:id="@+id/nav_shareA"
+        android:icon="@drawable/info"
+        android:title="About Us" />
+    <item
+        android:id="@+id/nav_shareF"
+        android:icon="@drawable/feedback"
+        android:title="Feedback" />
+
+    </group>
+</menu>
+
+
