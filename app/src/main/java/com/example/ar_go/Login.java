@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -44,6 +45,19 @@ public class Login extends AppCompatActivity implements DataInterface {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (!CommonFunctions.checkemail(edtEmail.getText().toString())) {
+                    edtEmail.setError("Enter your Valid  Email");
+                    edtEmail.requestFocus();
+                    return;
+                }
+
+                if (!CommonFunctions.checkpassword(edtPass.getText().toString())) {
+                    edtPass.setError("Enter password atleast 6 char long");
+                    edtPass.requestFocus();
+                    return;
+                }
+
                 HashMap<String, String> params = new HashMap<>();
                 params.put("u_email", edtEmail.getText().toString());
                 params.put("u_password", edtPass.getText().toString());
