@@ -39,6 +39,13 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     @Override  
     public void onBindViewHolder(ViewHolder holder, int position) {  
 
+        PropertyResultVo propertyResultVo = listdata.get(position);
+
+        holder.tvaddress.setText(propertyResultVo.getPAddress());
+        holder.tvdimensions.setText(propertyResultVo.getPDimensions());
+        holder.aptname.setText(propertyResultVo.getPName());
+
+
     }  
   
   
@@ -51,14 +58,14 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {  
 
-        TextView aptname,tvname,tvdimensions;
+        TextView aptname,tvaddress,tvdimensions;
 
 
         public ViewHolder(View itemView) {  
             super(itemView);  
 
             aptname=(TextView)itemView.findViewById(R.id.Aptname);
-            tvname = (TextView)itemView.findViewById(R.id.tvname);
+            tvaddress = (TextView)itemView.findViewById(R.id.tvaddress);
             tvdimensions = (TextView)itemView.findViewById(R.id.tvdimensions);
         }  
     }  
