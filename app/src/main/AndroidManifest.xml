@@ -38,16 +38,20 @@
         </activity>
         <activity
             android:name=".LoginBuilder"
-            android:label="Login" />
+            android:label="Builder Login" />
         <activity
             android:name=".SignUpBuilder"
-            android:label="Sign Up" />
+            android:label="Builder Sign Up" />
         <activity
             android:name=".Login"
-            android:label="Login" />
+            android:label="User Login" />
         <activity
             android:name=".MainActivity"
-            android:label="Sign Up" />
+            android:label="User Sign Up" />
+        <activity android:name=".HomePage"
+            android:label="Home Page" />
+        <activity android:name=".AddProperty"
+            android:label="Add Property" />
     </application>
 
 </manifest>

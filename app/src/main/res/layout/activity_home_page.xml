@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_builder"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="12dp"
@@ -42,6 +43,7 @@
                 android:src="@drawable/ic_action_amenities" />
 
             <TextView
+                android:id="@+id/txt_buildername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -155,24 +157,19 @@
         android:padding="16dp"
         android:textColor="@android:color/black"/>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <include layout="@layout/layout_property_row"/>
-            <include layout="@layout/layout_property_row"/>
 
 
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recvProperties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
 
-    </HorizontalScrollView>
+
+
+
+
 
     <TextView
         android:layout_width="match_parent"
