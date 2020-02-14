@@ -21,9 +21,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-/**
- * Created by MTAJ-08 on 12/5/2016.
- */
+
 public class Webservice_Volley {
 
     RequestQueue requestQueue;

@@ -52,6 +52,7 @@
             android:label="Home Page" />
         <activity android:name=".AddProperty"
             android:label="Add Property" />
+        <activity android:name=".PropertyListActivity"/>
     </application>
 
 </manifest>
