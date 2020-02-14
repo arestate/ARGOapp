@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".PropertyListActivity"></activity>
         <activity
             android:name=".BuilderHomepage"
             android:label="@string/title_activity_builder_homepage"></activity>

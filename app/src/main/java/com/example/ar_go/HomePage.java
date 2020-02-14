@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.ar_go.Adapter.BuilderListAdapter;
 import com.example.ar_go.Adapter.MyListAdapter;
+import com.example.ar_go.ApiModels.BuilderinfoVo;
 import com.example.ar_go.Models.PropertyinfoVo;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -22,7 +24,7 @@ public class HomePage extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
 
-    RecyclerView recvProperties;
+    RecyclerView recvProperties,recvBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class HomePage extends AppCompatActivity implements DataInterface {
 
         recvProperties = (RecyclerView)findViewById(R.id.recvProperties);
         recvProperties.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        recvBuilder = (RecyclerView)findViewById(R.id.recvBuilder);
+        recvBuilder.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         volley = new Webservice_Volley(this, this);
 
@@ -41,6 +46,11 @@ public class HomePage extends AppCompatActivity implements DataInterface {
         volley.CallVolley(url, params, "get_property");
 
 
+        String url1 = Constants.Webserive_Url + "get_builder.php";
+
+        volley.CallVolley(url1, params, "get_builder");
+
+
     }
 
     @Override
@@ -48,23 +58,46 @@ public class HomePage extends AppCompatActivity implements DataInterface {
 
         try {
 
-            Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+            if (tag.equalsIgnoreCase("get_builder")) {
 
-            PropertyinfoVo propertyinfoVo = new Gson().fromJson(jsonObject.toString(),PropertyinfoVo.class);
+                BuilderinfoVo builderinfoVo = new Gson().fromJson(jsonObject.toString(), BuilderinfoVo.class);
 
-            if (propertyinfoVo != null) {
+                if (builderinfoVo != null) {
 
-                if (propertyinfoVo.getResult() != null) {
+                    if (builderinfoVo.getResult() != null) {
 
-                    if (propertyinfoVo.getResult().size() > 0) {
+                        if (builderinfoVo.getResult().size() > 0) {
 
-                        MyListAdapter adapter = new MyListAdapter(propertyinfoVo.getResult());
-                        recvProperties.setAdapter(adapter);
+                            BuilderListAdapter adapter = new BuilderListAdapter(builderinfoVo.getResult());
+                            recvBuilder.setAdapter(adapter);
+
+                        }
 
                     }
 
                 }
 
+            }
+            else {
+
+//                Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+
+                PropertyinfoVo propertyinfoVo = new Gson().fromJson(jsonObject.toString(), PropertyinfoVo.class);
+
+                if (propertyinfoVo != null) {
+
+                    if (propertyinfoVo.getResult() != null) {
+
+                        if (propertyinfoVo.getResult().size() > 0) {
+
+                            MyListAdapter adapter = new MyListAdapter(propertyinfoVo.getResult());
+                            recvProperties.setAdapter(adapter);
+
+                        }
+
+                    }
+
+                }
             }
 
         }
