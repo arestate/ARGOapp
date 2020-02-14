@@ -13,9 +13,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BuilderHomepage"
+            android:label="@string/title_activity_builder_homepage"></activity>
+        <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Feedback" />
         <activity android:name=".PropertyDetails" />
         <activity android:name=".AreaSelection" />
@@ -48,11 +51,13 @@
         <activity
             android:name=".MainActivity"
             android:label="User Sign Up" />
-        <activity android:name=".HomePage"
+        <activity
+            android:name=".HomePage"
             android:label="Home Page" />
-        <activity android:name=".AddProperty"
+        <activity
+            android:name=".AddProperty"
             android:label="Add Property" />
-        <activity android:name=".PropertyListActivity"/>
+        <activity android:name=".PropertyListActivity" />
     </application>
 
 </manifest>

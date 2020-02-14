@@ -30,37 +30,131 @@
             android:src="@drawable/home"
             android:layout_gravity="center"
             android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvname"
+            android:text="Name"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/edt_num1"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Name" />
+            android:hint="Name"
+            android:padding="16dp"
+            android:layout_marginBottom="6dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:background="@drawable/edittext_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvaddress"
+            android:text="Address"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/edt_num2"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Address"
+            android:padding="16dp"
+            android:layout_marginBottom="6dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:background="@drawable/edittext_background"
             android:lines="2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvdimensions"
+            android:text="Dimensions"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
+
         <EditText
             android:id="@+id/edt_num3"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Dimension" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="Dimension"
+            android:padding="16dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvtype"
+            android:text="Type"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
+
         <EditText
             android:id="@+id/edt_num4"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Type" />
+            android:hint="Type"
+            android:padding="16dp"
+            android:layout_marginBottom="6dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:background="@drawable/edittext_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvcategory"
+            android:text="Category"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/edt_num5"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Category" />
+            android:hint="Category"
+            android:padding="16dp"
+            android:layout_marginBottom="6dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:background="@drawable/edittext_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvplanfile"
+            android:text="Plan File"
+            android:textAllCaps="false"
+            android:paddingBottom="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/edt_num6"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Plan File" />
+            android:hint="Plan File"
+            android:padding="16dp"
+            android:layout_marginBottom="6dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:background="@drawable/edittext_background"/>
     </LinearLayout>
 
 
@@ -78,6 +172,7 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:height="60dp"/>
 
 </LinearLayout>
