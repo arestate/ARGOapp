@@ -20,6 +20,7 @@
         android:paddingTop="24dp"
         android:paddingBottom="24dp"/>
     <EditText
+        android:id="@+id/edtEnq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,7 +34,7 @@
         android:textSize="16sp"
         android:gravity="left"/>
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Post Your Enquiry"
