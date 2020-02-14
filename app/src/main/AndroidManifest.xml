@@ -58,6 +58,8 @@
             android:name=".AddProperty"
             android:label="Add Property" />
         <activity android:name=".PropertyListActivity" />
+        <activity android:name=".UserEnquiry"
+            android:label="UserEnquiry"/>
     </application>
 
 </manifest>
