@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ar_go.Adapter.BuilderListAdapter;
+import com.example.ar_go.Adapter.EnquiryListAdapter;
 import com.example.ar_go.Adapter.MyListAdapter;
 import com.example.ar_go.ApiModels.BuilderinfoVo;
 import com.example.ar_go.Models.EnquiryInfoVo;
@@ -32,14 +34,18 @@ public class ToolsFragment extends Fragment implements DataInterface {
 
     private ToolsViewModel toolsViewModel;
     Webservice_Volley volley;
+    RecyclerView recvEnquiry;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        RecyclerView recyclerView1;
-        recyclerView1 = (RecyclerView) root.findViewById(R.id.recycle_enquiry);
+
+
+
+        recvEnquiry = (RecyclerView) root.findViewById(R.id.recycle_enquiry);
+        recvEnquiry.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
         volley = new Webservice_Volley( getActivity() , this);
         HashMap<String, String> params = new HashMap<>();
@@ -65,7 +71,8 @@ public class ToolsFragment extends Fragment implements DataInterface {
 
                         if (enquiryInfoVo.getResult().size() > 0) {
 
-
+                            EnquiryListAdapter adapter = new EnquiryListAdapter(enquiryInfoVo.getResult());
+                            recvEnquiry.setAdapter(adapter);
                         }
 
                     }
