@@ -26,7 +26,7 @@ public class BuilderPropertyListAdapter extends RecyclerView.Adapter<BuilderProp
     @Override  
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());  
-        View listItem= layoutInflater.inflate(R.layout.layout_property_row, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.builder_property_list_row, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);  
         return viewHolder;  
     }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,10 +46,13 @@ public class ToolsFragment extends Fragment implements DataInterface {
 
 
         recvEnquiry = (RecyclerView) root.findViewById(R.id.recycle_enquiry);
-        recvEnquiry.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        recvEnquiry.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+
+        recvEnquiry.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
 
         volley = new Webservice_Volley( getActivity() , this);
         HashMap<String, String> params = new HashMap<>();
+        params.put("b_id","2");
 
         String url = Constants.Webserive_Url + "get_enquiry_based_on_builders.php";
         volley.CallVolley(url, params, "get_enquiry_based_on_builders");
@@ -61,7 +65,7 @@ public class ToolsFragment extends Fragment implements DataInterface {
     public void getData(JSONObject jsonObject, String tag) {
         try {
 
-            if (tag.equalsIgnoreCase("get_enquiry_based on_builders")) {
+            if (tag.equalsIgnoreCase("get_enquiry_based_on_builders")) {
 
                 EnquiryInfoVo enquiryInfoVo = new Gson().fromJson(jsonObject.toString(), EnquiryInfoVo.class);
 
