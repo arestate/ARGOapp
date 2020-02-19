@@ -11,7 +11,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp">
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tvhead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lilleria"
@@ -21,7 +21,7 @@
         android:paddingBottom="24dp"
         android:paddingTop="24dp"/>
     <EditText
-        android:id="@+id/edtAddress"
+        android:id="@+id/edtFeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +35,7 @@
         android:gravity="left"
         android:background="@drawable/edittext_background"/>
     <RatingBar
-        android:id="@+id/simpleRatingBar"
+        android:id="@+id/Ratebar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -43,7 +43,7 @@
         android:numStars="5"
         android:paddingTop="20dp"/>
     <Button
-        android:id="@+id/getRating"
+        android:id="@+id/btngetRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"

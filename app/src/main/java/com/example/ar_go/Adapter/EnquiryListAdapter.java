@@ -40,6 +40,7 @@ public class EnquiryListAdapter extends RecyclerView.Adapter<EnquiryListAdapter.
 
         holder.txt_details.setText(enquiryResultVo.getEDetails());
         holder.txt_date.setText(enquiryResultVo.getEDate());
+        holder.txt_name.setText(enquiryResultVo.getPId());
 
 
 

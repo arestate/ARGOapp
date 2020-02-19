@@ -22,6 +22,7 @@ import java.util.HashMap;
 public class SignUpBuilder extends AppCompatActivity implements DataInterface {
     EditText edtName;
     EditText edtEmail;
+    EditText edtLicense;
     EditText edtContactNo;
     EditText edtAddress;
     EditText edtPassword;
@@ -29,6 +30,7 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
     EditText edtWebsite;
     CheckBox chkAgree;
     Button btnSignUp;
+
 
     Webservice_Volley volley;
 
@@ -38,6 +40,7 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_builder);
         edtName = (EditText) findViewById(R.id.edtName);
+        edtLicense = (EditText)findViewById(R.id.edtLicenseNo);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtContactNo = (EditText) findViewById(R.id.edtContactNo);
         edtAddress = (EditText) findViewById(R.id.edtAddress);
@@ -54,6 +57,12 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (!CommonFunctions.checkstring(edtLicense.getText().toString())) {
+                    edtName.setError("Enter your license number");
+                    edtName.requestFocus();
+                    return;
+                }
 
                 if (!CommonFunctions.checkstring(edtName.getText().toString())) {
                     edtName.setError("Enter your name");
@@ -95,7 +104,7 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
                     params.put("b_contactno", edtContactNo.getText().toString());
                     params.put("b_address", edtAddress.getText().toString());
                     params.put("b_password", edtPassword.getText().toString());
-                    params.put("b_licenseno", "");
+                    params.put("b_licenseno",edtLicense.getText().toString());
                     params.put("b_website", edtWebsite.getText().toString());
                     params.put("b_logo", "");
                     params.put("b_status", "1");
