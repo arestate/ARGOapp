@@ -20,14 +20,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class SignUpBuilder extends AppCompatActivity implements DataInterface {
-    EditText edtName;
-    EditText edtEmail;
-    EditText edtLicense;
-    EditText edtContactNo;
-    EditText edtAddress;
-    EditText edtPassword;
-    EditText edtCnfPassword;
-    EditText edtWebsite;
+
+    EditText edtName,edtEmail,edtLicense,edtContactNo,edtAddress,edtPassword,edtCnfPassword,edtWebsite;
     CheckBox chkAgree;
     Button btnSignUp;
 
@@ -92,10 +86,6 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
                     Toast.makeText(SignUpBuilder.this, "Please agree terms & conditions", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-
-
-
 
 
                     HashMap<String, String> params = new HashMap<>();

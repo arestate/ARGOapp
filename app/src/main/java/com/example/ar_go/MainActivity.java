@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
 
     EditText edtName,edtEmail,edtContactNo,edtAddress,edtPassword;
     Button btnSignUp;
+    CheckBox chkAgree;
 
     Webservice_Volley volley;
 
@@ -35,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
         edtContactNo = (EditText)findViewById(R.id.edtContactNo);
         edtAddress = (EditText)findViewById(R.id.edtAddress);
         edtPassword = (EditText)findViewById(R.id.edtPassword);
+        chkAgree = (CheckBox) findViewById(R.id.chkAgree);
 
         btnSignUp=(Button)findViewById(R.id.btnSignUp);
-
 
         volley = new Webservice_Volley(this,this);
 
@@ -75,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
                     return;
                 }
 
+                if (!chkAgree.isChecked()) {
+                    Toast.makeText(MainActivity.this, "Please agree terms & conditions", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
                 HashMap<String, String> params = new HashMap<>();
                 params.put("u_name", edtName.getText().toString());
                 params.put("u_email", edtEmail.getText().toString());
@@ -82,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
                 params.put("u_address", edtAddress.getText().toString());
                 params.put("u_password", edtPassword.getText().toString());
 
-                String url = Constants.Webserive_Url + "registration.php";
-                volley.CallVolley(url, params, "register");
+                String url = Constants.Webserive_Url + "user_registration.php";
+                volley.CallVolley(url, params, "user_registration");
             }
         });
     }
@@ -98,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }

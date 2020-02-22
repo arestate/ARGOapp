@@ -15,12 +15,12 @@ public class UserSelection extends AppCompatActivity {
     }
 
     public void ClickOnBuilderLayout(View view) {
-        Intent i = new Intent(UserSelection.this, BuilderHomepage.class);
+        Intent i = new Intent(UserSelection.this, LoginBuilder.class);
         startActivity(i);
     }
 
     public void ClickOnUserLayout(View view) {
-        Intent i = new Intent(UserSelection.this, Feedback.class);
+        Intent i = new Intent(UserSelection.this, Login.class);
         startActivity(i);
     }
 }

@@ -80,6 +80,10 @@ public class Login extends AppCompatActivity implements DataInterface {
 
         try {
             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            if (jsonObject.getString("response").equalsIgnoreCase("1")) {
+                Intent i = new Intent(Login.this,DashboardActivity.class);
+                startActivity(i);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

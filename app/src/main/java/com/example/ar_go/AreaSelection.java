@@ -36,7 +36,6 @@ public class AreaSelection extends AppCompatActivity {
         AreaList.add("Alkapuri");
         AreaList.add("Atladra");
         AreaList.add("Gotri");
-        AreaList.add("Tarsali");
         AreaList.add("Gorwa");
         AreaList.add("Makarpura");
         AreaList.add("Manjalpur");

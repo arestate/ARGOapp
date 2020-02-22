@@ -22,7 +22,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
     Webservice_Volley volley;
 
 
-    EditText edt_num1,edt_num2,edt_num3,edt_num4,edt_num5,edt_num6;
+    EditText edt_num1,edt_num2,edt_num3,edt_num4,edt_num5,edt_num6,edt_num7;
     Button btnAdd;
 
 
@@ -44,6 +44,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         edt_num4 = (EditText) findViewById(R.id.edt_num4);
         edt_num5 = (EditText) findViewById(R.id.edt_num5);
         edt_num6 = (EditText) findViewById(R.id.edt_num6);
+        edt_num7 = (EditText) findViewById(R.id.edt_num7);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
 
@@ -83,6 +84,12 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
                     return;
                 }
 
+                if (!CommonFunctions.checkstring(edt_num6.getText().toString())) {
+                    edt_num6.setError("Enter your property details");
+                    edt_num6.requestFocus();
+                    return;
+                }
+
 
                 HashMap<String, String> params = new HashMap<>();
 
@@ -93,10 +100,12 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
                 params.put("p_type",edt_num4.getText().toString());
                 params.put("p_category",edt_num5.getText().toString());
                 params.put("p_plan_file",edt_num6.getText().toString());
+                params.put("p_details",edt_num7.getText().toString());
                 params.put("p_external_photo", "");
                 params.put("p_internal_photo", "");
                 params.put("p_latitude", "73.15");
                 params.put("p_longitude", "23.31");
+
 
 
                 String url = Constants.Webserive_Url + "add_property.php";

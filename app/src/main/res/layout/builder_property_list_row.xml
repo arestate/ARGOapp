@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="2BHK Apartment"
-        android:textSize="25sp"
+        android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textSize="25sp"
+        android:textSize="17sp"
         android:id="@+id/tvaddress"
         android:text="Vasna Bhayli"
         android:textColor="#3c3c3c"/>
@@ -39,7 +39,7 @@
         android:layout_marginTop="4dp"
         android:id="@+id/price"
         android:text="$ 35 lac"
-        android:textSize="25sp"
+        android:textSize="17sp"
         android:textColor="@android:color/holo_blue_dark"/>
    <LinearLayout
        android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
         android:textColor="#3c3c3c"
         android:layout_marginTop="4dp"
         android:layout_marginRight="20dp"
-        android:textSize="25sp"/>
+        android:textSize="16sp"/>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
            android:text="2"
            android:layout_marginTop="4dp"
            android:layout_marginRight="20dp"
-           android:textSize="25sp"/>
+           android:textSize="16sp"/>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
            android:textColor="#3c3c3c"
            android:text="2"
            android:layout_marginRight="20dp"
-           android:textSize="25sp"/>
+           android:textSize="16sp"/>
 
    </LinearLayout>
 

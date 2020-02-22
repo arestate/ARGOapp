@@ -16,15 +16,6 @@
     android:paddingLeft="20dp"
     android:background="#E8E8E8">
 
-    <!--<TextView
-        android:id="@+id/txtSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SIGN UP"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="50sp"/>-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,17 +51,17 @@
         android:textSize="17sp"/>
 
     <EditText
-    android:id="@+id/edtEmail"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:hint="Email ID"
-    android:inputType="textEmailAddress"
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email ID"
+        android:inputType="textEmailAddress"
         android:padding="16dp"
         android:layout_marginBottom="6dp"
         android:paddingBottom="20dp"
         android:textSize="16sp"
-    android:gravity="left"
+        android:gravity="left"
         android:background="@drawable/edittext_background"/>
 
     <TextView
@@ -155,7 +146,7 @@
         android:paddingBottom="20dp">
 
         <CheckBox
-            android:id="@+id/txtcheck"
+            android:id="@+id/chkAgree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="I agree to the"
