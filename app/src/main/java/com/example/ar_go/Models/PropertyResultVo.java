@@ -30,6 +30,9 @@ public class PropertyResultVo {
     private String pPlanFile;
     @SerializedName("p_external_photo")
     @Expose
+    private String pDetails;
+    @SerializedName("p_details")
+    @Expose
     private String pExternalPhoto;
     @SerializedName("p_internal_photo")
     @Expose
@@ -104,6 +107,10 @@ public class PropertyResultVo {
     public void setPPlanFile(String pPlanFile) {
         this.pPlanFile = pPlanFile;
     }
+
+    public String getPDetails() { return pDetails;}
+
+    public void setPDetails(String pDetails){ this.pDetails=pDetails;}
 
     public String getPExternalPhoto() {
         return pExternalPhoto;
