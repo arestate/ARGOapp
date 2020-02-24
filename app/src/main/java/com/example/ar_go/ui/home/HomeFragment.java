@@ -20,6 +20,7 @@ import com.example.ar_go.Adapter.MyListAdapter;
 import com.example.ar_go.AddProperty;
 import com.example.ar_go.Models.PropertyinfoVo;
 import com.example.ar_go.R;
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -39,6 +40,8 @@ public class HomeFragment extends Fragment implements DataInterface {
 
     Webservice_Volley volley;
 
+    AllSharedPrefernces allSharedPrefernces;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class HomeFragment extends Fragment implements DataInterface {
 
         volley = new Webservice_Volley(getActivity(), this);
 
+        allSharedPrefernces= new AllSharedPrefernces(getActivity());
 
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +75,7 @@ public class HomeFragment extends Fragment implements DataInterface {
         super.onResume();
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("b_id","2");
+        params.put("b_id",allSharedPrefernces.getCustomerNo());
 
         String url = Constants.Webserive_Url + "get_property_based_on_builders.php";
 
@@ -95,6 +99,7 @@ public class HomeFragment extends Fragment implements DataInterface {
                         recvBuilderhome.setAdapter(adapter);
 
                     }
+
 
                 }
 

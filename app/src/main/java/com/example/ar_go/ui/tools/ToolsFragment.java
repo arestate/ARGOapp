@@ -22,6 +22,7 @@ import com.example.ar_go.ApiModels.BuilderinfoVo;
 import com.example.ar_go.Models.EnquiryInfoVo;
 import com.example.ar_go.Models.PropertyinfoVo;
 import com.example.ar_go.R;
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -36,6 +37,7 @@ public class ToolsFragment extends Fragment implements DataInterface {
     private ToolsViewModel toolsViewModel;
     Webservice_Volley volley;
     RecyclerView recvEnquiry;
+    AllSharedPrefernces allSharedPrefernces;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,8 +53,9 @@ public class ToolsFragment extends Fragment implements DataInterface {
         recvEnquiry.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
 
         volley = new Webservice_Volley( getActivity() , this);
+        allSharedPrefernces=new AllSharedPrefernces(getActivity());
         HashMap<String, String> params = new HashMap<>();
-        params.put("b_id","2");
+        params.put("b_id",allSharedPrefernces.getCustomerNo());
 
         String url = Constants.Webserive_Url + "get_enquiry_based_on_builders.php";
         volley.CallVolley(url, params, "get_enquiry_based_on_builders");

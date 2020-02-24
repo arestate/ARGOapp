@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 public class AddProperty extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
-
+    AllSharedPrefernces allSharedPrefernces;
 
     EditText edt_num1,edt_num2,edt_num3,edt_num4,edt_num5,edt_num6,edt_num7;
     Button btnAdd;
@@ -32,7 +33,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         setContentView(R.layout.activity_add_property);
 
         volley = new Webservice_Volley(this, this);
-
+        allSharedPrefernces=new AllSharedPrefernces(this);
 
 
 
@@ -94,7 +95,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
                 HashMap<String, String> params = new HashMap<>();
 
                 params.put("p_name", edt_num1.getText().toString());
-                params.put("b_id", "2");
+                params.put("b_id",allSharedPrefernces.getCustomerNo());
                 params.put("p_address", edt_num2.getText().toString());
                 params.put("p_dimensions", edt_num3.getText().toString());
                 params.put("p_type",edt_num4.getText().toString());

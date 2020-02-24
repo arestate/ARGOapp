@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -29,6 +30,8 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
 
+    AllSharedPrefernces allSharedPrefernces;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,7 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
         txtSignup2= (TextView)findViewById(R.id.btnSignUp);
 
         volley = new Webservice_Volley(this,this);
+        allSharedPrefernces = new AllSharedPrefernces(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +88,14 @@ public class LoginBuilder extends AppCompatActivity implements DataInterface {
             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
             if (jsonObject.getString("response").equalsIgnoreCase("1")){
 
+                allSharedPrefernces.setUserLogin(true);
+                allSharedPrefernces.setCustomerNo(jsonObject.getString("id"));
+                allSharedPrefernces.setCustomerData(jsonObject.getJSONObject("data").toString());
+
                 Intent i = new Intent(LoginBuilder.this,BuilderHomepage.class);
                 startActivity(i);
 
+                finishAffinity();
             }
 
 

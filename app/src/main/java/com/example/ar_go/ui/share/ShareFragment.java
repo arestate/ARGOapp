@@ -18,6 +18,7 @@ import com.example.ar_go.Adapter.EnquiryListAdapter;
 import com.example.ar_go.Models.EnquiryInfoVo;
 import com.example.ar_go.Models.UserInfoVo;
 import com.example.ar_go.R;
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -34,8 +35,7 @@ public class ShareFragment extends Fragment implements DataInterface {
     TextView tvname;
 
     Webservice_Volley volley;
-
-
+    AllSharedPrefernces allSharedPrefernces;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,10 +49,11 @@ public class ShareFragment extends Fragment implements DataInterface {
         edtcontact = (EditText) root.findViewById(R.id.edtcontact);
 
         volley = new Webservice_Volley(getActivity(), this);
+        allSharedPrefernces=new AllSharedPrefernces(getActivity());
 
         HashMap<String, String> params = new HashMap<>();
 
-        params.put("u_id","2");
+        params.put("u_id",allSharedPrefernces.getCustomerNo());
 
         String url = Constants.Webserive_Url + "get_userprofile.php";
 

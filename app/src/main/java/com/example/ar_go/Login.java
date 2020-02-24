@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -27,6 +28,7 @@ public class Login extends AppCompatActivity implements DataInterface {
     TextView txtForgotPassword, txtNewUser2;
 
     Webservice_Volley volley;
+    AllSharedPrefernces allSharedPrefernces;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class Login extends AppCompatActivity implements DataInterface {
         txtNewUser2 = (TextView) findViewById(R.id.txtNewUser2);
 
         volley = new Webservice_Volley(this, this);
+        allSharedPrefernces=new AllSharedPrefernces(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
