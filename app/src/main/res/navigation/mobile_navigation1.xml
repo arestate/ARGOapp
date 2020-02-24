@@ -15,8 +15,14 @@
     <fragment
         android:id="@+id/navigation_inquiry"
         android:name="com.example.ar_go.ui.tools.ToolsFragment"
-        android:label="My Inquiries"
+        android:label="My Enquiries"
         tools:layout="@layout/fragment_tools" />
+    <fragment
+        android:id="@+id/navigation_feedback"
+        android:name="com.example.ar_go.ui.gallery.GalleryFragment"
+        android:label="Feedback"
+        tools:layout="@layout/fragment_gallery" />
+
 
     <fragment
         android:id="@+id/navigation_profile"
