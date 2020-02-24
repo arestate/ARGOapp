@@ -41,7 +41,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
         holder.txt_details.setText(feedbackResultVo.getFDetails());
         holder.ratingBar.setRating(Float.parseFloat(feedbackResultVo.getFRatings()));
-        holder.txt_name.setText(feedbackResultVo.getPId());
+        holder.txt_name.setText(feedbackResultVo.getPName());
 
 
 

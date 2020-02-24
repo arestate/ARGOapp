@@ -84,8 +84,14 @@ public class Login extends AppCompatActivity implements DataInterface {
         try {
             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
             if (jsonObject.getString("response").equalsIgnoreCase("1")) {
+
+                allSharedPrefernces.setUserLogin(true);
+                allSharedPrefernces.setCustomerNo(jsonObject.getString("id"));
+                allSharedPrefernces.setCustomerData(jsonObject.getJSONObject("data").toString());
+
                 Intent i = new Intent(Login.this,DashboardActivity.class);
                 startActivity(i);
+                finishAffinity();
             }
 
         } catch (Exception e) {

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -27,6 +28,7 @@ public class Feedback extends AppCompatActivity implements DataInterface {
     RatingBar Ratebar;
 
     Webservice_Volley volley;
+    AllSharedPrefernces allSharedPrefernces;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class Feedback extends AppCompatActivity implements DataInterface {
         Ratebar = (RatingBar) findViewById(R.id.Ratebar);
 
         volley = new Webservice_Volley(this, this);
-
+        allSharedPrefernces=new AllSharedPrefernces(this);
         btngetRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +55,7 @@ public class Feedback extends AppCompatActivity implements DataInterface {
                 params.put("f_details", edtFeed.getText().toString());
                 params.put("p_id","2");
                 params.put("b_id","1");
-                params.put("u_id","2");
+                params.put("u_id",allSharedPrefernces.getCustomerNo());
                 params.put("f_date",new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
                 params.put("f_ratings",rating);

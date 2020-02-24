@@ -12,10 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PropertyListActivity"></activity>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PropertyListActivity" />
         <activity
             android:name=".BuilderHomepage"
-            android:label="@string/title_activity_builder_homepage"></activity>
+            android:label="@string/title_activity_builder_homepage" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
@@ -33,15 +41,9 @@
             android:name=".ForgotPassword"
             android:label="Forgot Password"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".UserSelection">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginBuilder"
             android:label="Builder Login" />
@@ -60,10 +62,9 @@
         <activity
             android:name=".AddProperty"
             android:label="Add Property" />
-
-        <activity android:name=".UserEnquiry"
-            android:label="UserEnquiry"/>
-
+        <activity
+            android:name=".UserEnquiry"
+            android:label="UserEnquiry" />
     </application>
 
 </manifest>

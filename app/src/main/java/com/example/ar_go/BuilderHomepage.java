@@ -1,9 +1,14 @@
 package com.example.ar_go;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,6 +30,35 @@ public class BuilderHomepage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dashboard, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.action_logout) {
+
+            AllSharedPrefernces allSharedPrefernces = new AllSharedPrefernces(this);
+            allSharedPrefernces.ClearAllData();
+
+
+            Intent i = new Intent(BuilderHomepage.this, SplashActivity.class);
+            startActivity(i);
+
+            finishAffinity();
+
+            return true;
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

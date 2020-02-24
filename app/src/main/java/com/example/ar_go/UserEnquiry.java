@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.ar_go.utils.AllSharedPrefernces;
 import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
@@ -26,6 +27,7 @@ public class UserEnquiry extends AppCompatActivity implements DataInterface {
 
 
     Webservice_Volley volley;
+    AllSharedPrefernces allSharedPrefernces;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class UserEnquiry extends AppCompatActivity implements DataInterface {
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         volley = new Webservice_Volley(this, this);
+        allSharedPrefernces=new AllSharedPrefernces(this);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +51,7 @@ public class UserEnquiry extends AppCompatActivity implements DataInterface {
                 params.put("e_details", edtEnq.getText().toString());
                 params.put("p_id","2");
                 params.put("b_id","1");
-                params.put("u_id","2");
+                params.put("u_id",allSharedPrefernces.getCustomerNo());
                 params.put("e_date",new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
                 String url = Constants.Webserive_Url + "add_enquiry.php";
