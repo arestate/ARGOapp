@@ -28,10 +28,10 @@ public class PropertyResultVo {
     @SerializedName("p_plan_file")
     @Expose
     private String pPlanFile;
-    @SerializedName("p_external_photo")
+    @SerializedName("p_details")
     @Expose
     private String pDetails;
-    @SerializedName("p_details")
+    @SerializedName("p_external_photo")
     @Expose
     private String pExternalPhoto;
     @SerializedName("p_internal_photo")

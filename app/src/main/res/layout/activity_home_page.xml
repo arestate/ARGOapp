@@ -7,84 +7,53 @@
     android:background="#f0f0f0">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomePage"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/home"
-        android:scaleType="fitXY" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".HomePage">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/home" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recvBuilder"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Properties"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:textColor="@android:color/black"/>
-
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recvProperties"
+                android:id="@+id/recvBuilder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="New Properties"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
 
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Properties"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:textColor="@android:color/black"/>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <include layout="@layout/layout_property_row"/>
-        <include layout="@layout/layout_property_row"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recvProperties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
 
 
     </LinearLayout>
-    </HorizontalScrollView>
-</LinearLayout>
 </androidx.core.widget.NestedScrollView>

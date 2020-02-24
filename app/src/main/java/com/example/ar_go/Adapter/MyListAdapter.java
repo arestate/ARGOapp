@@ -1,6 +1,8 @@
 package com.example.ar_go.Adapter;
 
-import android.view.LayoutInflater;  
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;  
 import android.view.ViewGroup;  
 import android.widget.ImageView;  
@@ -11,7 +13,10 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ar_go.Models.PropertyResultVo;
+import com.example.ar_go.PropertyDetails;
 import com.example.ar_go.R;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,14 +42,28 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
 
     @Override  
-    public void onBindViewHolder(ViewHolder holder, int position) {  
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        PropertyResultVo propertyResultVo = listdata.get(position);
+        final PropertyResultVo propertyResultVo = listdata.get(position);
 
         holder.tvaddress.setText(propertyResultVo.getPAddress());
         holder.tvdimensions.setText(propertyResultVo.getPDimensions());
         holder.aptname.setText(propertyResultVo.getPName());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(holder.itemView.getContext(), PropertyDetails.class);
+                i.putExtra("data",new Gson().toJson(propertyResultVo));
+                holder.itemView.getContext().startActivity(i);
+
+            }
+        });
+
+        if(!TextUtils.isEmpty(propertyResultVo.getPExternalPhoto())){
+            Picasso.get().load(propertyResultVo.getPExternalPhoto()).resize(200,200).into(holder.imgproperty);
+        }
 
     }  
   
@@ -59,6 +78,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {  
 
         TextView aptname,tvaddress,tvdimensions;
+        ImageView imgproperty;
 
 
         public ViewHolder(View itemView) {  
@@ -67,6 +87,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             aptname=(TextView)itemView.findViewById(R.id.Aptname);
             tvaddress = (TextView)itemView.findViewById(R.id.tvaddress);
             tvdimensions = (TextView)itemView.findViewById(R.id.tvdimensions);
+            imgproperty=itemView.findViewById(R.id.imgproperty);
+
         }  
     }  
 }  
