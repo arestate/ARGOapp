@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="@drawable/im1"
-    android:gravity="center">
+    android:background="@drawable/ar_image1"
+    android:scaleType="fitXY">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="AR GO"
-        android:textStyle="bold|italic"
-        android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:text="myVision"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="50sp"
+        android:layout_marginTop="30dp"
         android:gravity="center"/>
 
 </LinearLayout>

@@ -57,34 +57,5 @@
 
 
 
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Properties"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:padding="16dp"
-            android:textColor="@android:color/black"/>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
-
-                <include layout="@layout/layout_property_row"/>
-                <include layout="@layout/layout_property_row"/>
-
-
-            </LinearLayout>
-        </HorizontalScrollView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

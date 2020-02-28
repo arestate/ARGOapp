@@ -1,11 +1,18 @@
 package com.example.ar_go;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ar_go.utils.AllSharedPrefernces;
@@ -16,6 +23,7 @@ import com.example.ar_go.utils.Webservice_Volley;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AddProperty extends AppCompatActivity implements DataInterface {
@@ -23,9 +31,13 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
     Webservice_Volley volley;
     AllSharedPrefernces allSharedPrefernces;
 
-    EditText edt_num1,edt_num2,edt_num3,edt_num4,edt_num5,edt_num6,edt_num7;
+    EditText edtname,edtaddress,edtdimension,edtcategory,edtplanfile,edtdetails;
     Button btnAdd;
+    Spinner sptype;
 
+    ArrayList<String> propertytypelist = new ArrayList<String>();
+    ArrayList<String> residentialroomcomponentlist = new ArrayList<String>();
+    ArrayList<String> commercialroomcomponentlist = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,73 +47,88 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         volley = new Webservice_Volley(this, this);
         allSharedPrefernces=new AllSharedPrefernces(this);
 
+        propertytypelist.add("Select property type");
+        propertytypelist.add("Residential");
+        propertytypelist.add("Commercial");
 
 
+        residentialroomcomponentlist.add("Select room type");
+        residentialroomcomponentlist.add("Living Room");
+        residentialroomcomponentlist.add("Bedroom");
+        residentialroomcomponentlist.add("Kitchen");
+        residentialroomcomponentlist.add("Dining Room");
+        residentialroomcomponentlist.add("Puja Room");
 
 
-        edt_num1 = (EditText) findViewById(R.id.edt_num1);
-        edt_num2 = (EditText) findViewById(R.id.edt_num2);
-        edt_num3 = (EditText) findViewById(R.id.edt_num3);
-        edt_num4 = (EditText) findViewById(R.id.edt_num4);
-        edt_num5 = (EditText) findViewById(R.id.edt_num5);
-        edt_num6 = (EditText) findViewById(R.id.edt_num6);
-        edt_num7 = (EditText) findViewById(R.id.edt_num7);
+        commercialroomcomponentlist.add("Select room type");
+        commercialroomcomponentlist.add("Work Place");
+        commercialroomcomponentlist.add("Reception");
+        commercialroomcomponentlist.add("Cabin");
+
+        edtname = (EditText) findViewById(R.id.edtname);
+        edtaddress = (EditText) findViewById(R.id.edtaddress);
+        edtdimension= (EditText) findViewById(R.id.edtdimension);
+        sptype = (Spinner) findViewById(R.id.sptype);
+        edtcategory = (EditText) findViewById(R.id.edtcategory);
+        edtplanfile = (EditText) findViewById(R.id.edtplanfile);
+        edtdetails = (EditText) findViewById(R.id.edtdetails);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerroomdata);
+
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddProperty.this,android.R.layout.simple_spinner_dropdown_item,propertytypelist);
+        sptype.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (!CommonFunctions.checkstring(edt_num1.getText().toString())) {
-                    edt_num1.setError("Enter your name");
-                    edt_num1.requestFocus();
+                if (!CommonFunctions.checkstring(edtname.getText().toString())) {
+                    edtname.setError("Enter your name");
+                    edtname.requestFocus();
                     return;
                 }
 
-                if (!CommonFunctions.checkstring(edt_num2.getText().toString())) {
-                    edt_num2.setError("Enter your address");
-                    edt_num2.requestFocus();
+                if (!CommonFunctions.checkstring(edtaddress.getText().toString())) {
+                    edtaddress.setError("Enter your address");
+                    edtaddress.requestFocus();
                     return;
                 }
-                if (!CommonFunctions.checkstring(edt_num3.getText().toString())) {
-                    edt_num3.setError("Enter your Dimension");
-                    edt_num3.requestFocus();
+                if (!CommonFunctions.checkstring(edtdimension.getText().toString())) {
+                    edtdimension.setError("Enter your Dimension");
+                    edtdimension.requestFocus();
                     return;
                 }
-                if (!CommonFunctions.checkstring(edt_num4.getText().toString())) {
-                    edt_num4.setError("Enter your type");
-                    edt_num4.requestFocus();
+                if (!CommonFunctions.checkstring(edtcategory.getText().toString())) {
+                    edtcategory.setError("Enter your category");
+                    edtcategory.requestFocus();
                     return;
                 }
-                if (!CommonFunctions.checkstring(edt_num5.getText().toString())) {
-                    edt_num5.setError("Enter your category");
-                    edt_num5.requestFocus();
-                    return;
-                }
-                if (!CommonFunctions.checkstring(edt_num6.getText().toString())) {
-                    edt_num6.setError("Enter your plan file");
-                    edt_num6.requestFocus();
+                if (!CommonFunctions.checkstring(edtplanfile.getText().toString())) {
+                    edtplanfile.setError("Enter your plan file");
+                    edtplanfile.requestFocus();
                     return;
                 }
 
-                if (!CommonFunctions.checkstring(edt_num6.getText().toString())) {
-                    edt_num6.setError("Enter your property details");
-                    edt_num6.requestFocus();
+                if (!CommonFunctions.checkstring(edtdetails.getText().toString())) {
+                    edtdetails.setError("Enter your property details");
+                    edtdetails.requestFocus();
                     return;
                 }
 
 
                 HashMap<String, String> params = new HashMap<>();
 
-                params.put("p_name", edt_num1.getText().toString());
+                params.put("p_name", edtname.getText().toString());
                 params.put("b_id",allSharedPrefernces.getCustomerNo());
-                params.put("p_address", edt_num2.getText().toString());
-                params.put("p_dimensions", edt_num3.getText().toString());
-                params.put("p_type",edt_num4.getText().toString());
-                params.put("p_category",edt_num5.getText().toString());
-                params.put("p_plan_file",edt_num6.getText().toString());
-                params.put("p_details",edt_num7.getText().toString());
+                params.put("p_address", edtaddress.getText().toString());
+                params.put("p_dimensions", edtdimension.getText().toString());
+                params.put("p_type",sptype.getSelectedItem().toString());
+                params.put("p_category",edtcategory.getText().toString());
+                params.put("p_plan_file",edtplanfile.getText().toString());
+                params.put("p_details",edtdetails.getText().toString());
                 params.put("p_external_photo", "");
                 params.put("p_internal_photo", "");
                 params.put("p_latitude", "73.15");
@@ -141,5 +168,46 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         }
 
 
+    }
+
+    public void showaddroomdialog()
+    {
+        Dialog d = new Dialog(this);
+        d.setContentView(R.layout.dialog_addpropertyroom);
+
+        int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
+        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(d.getWindow().getAttributes());
+        lp.width = width;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        d.show();
+        d.getWindow().setAttributes(lp);
+
+        Spinner sproom = (Spinner) d.findViewById(R.id.sproom);
+        ImageView img_room = (ImageView) d.findViewById(R.id.img_room);
+
+        if (sptype.getSelectedItem().toString().equalsIgnoreCase("Residential")){
+
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddProperty.this,android.R.layout.simple_spinner_dropdown_item,residentialroomcomponentlist);
+            sproom.setAdapter(adapter);
+
+        }
+
+        else {
+
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddProperty.this,android.R.layout.simple_spinner_dropdown_item,commercialroomcomponentlist);
+            sproom.setAdapter(adapter);
+
+        }
+
+        d.show();
+    }
+
+
+    public void ClickonSelectImages(View view) {
+
+        showaddroomdialog();
     }
 }
