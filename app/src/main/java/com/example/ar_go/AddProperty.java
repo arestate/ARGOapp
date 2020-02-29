@@ -4,15 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ar_go.utils.AllSharedPrefernces;
@@ -20,17 +27,31 @@ import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+import com.loopj.android.http.TextHttpResponseHandler;
+import com.mvc.imagepicker.ImagePicker;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.Header;
 
 public class AddProperty extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
     AllSharedPrefernces allSharedPrefernces;
+    Button btnselectimage;
 
+    LinearLayout ll_roomData;
     EditText edtname,edtaddress,edtdimension,edtcategory,edtplanfile,edtdetails;
     Button btnAdd;
     Spinner sptype;
@@ -39,10 +60,14 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
     ArrayList<String> residentialroomcomponentlist = new ArrayList<String>();
     ArrayList<String> commercialroomcomponentlist = new ArrayList<String>();
 
+    JSONArray RoomImagesArray = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_property);
+        ImagePicker.setMinQuality(300, 300);
+
 
         volley = new Webservice_Volley(this, this);
         allSharedPrefernces=new AllSharedPrefernces(this);
@@ -73,9 +98,11 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         edtplanfile = (EditText) findViewById(R.id.edtplanfile);
         edtdetails = (EditText) findViewById(R.id.edtdetails);
 
+
+
         btnAdd = (Button) findViewById(R.id.btnAdd);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerroomdata);
+        ll_roomData = (LinearLayout) findViewById(R.id.ll_roomData);
 
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddProperty.this,android.R.layout.simple_spinner_dropdown_item,propertytypelist);
@@ -159,6 +186,8 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
 
             if (jsonObject.getString("response").equalsIgnoreCase("1")) {
                 finish();
+
+
             }
         }
 
@@ -170,9 +199,12 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
 
     }
 
+    ImageView img_room;
+    Spinner sproom;
+    String image_path = "";
     public void showaddroomdialog()
     {
-        Dialog d = new Dialog(this);
+        final Dialog d = new Dialog(this);
         d.setContentView(R.layout.dialog_addpropertyroom);
 
         int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
@@ -185,8 +217,17 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         d.show();
         d.getWindow().setAttributes(lp);
 
-        Spinner sproom = (Spinner) d.findViewById(R.id.sproom);
-        ImageView img_room = (ImageView) d.findViewById(R.id.img_room);
+        sproom = (Spinner) d.findViewById(R.id.sproom);
+        img_room = (ImageView) d.findViewById(R.id.img_room);
+        btnselectimage = (Button) d.findViewById(R.id.btnselectimage);
+        Button btnAdd = (Button) d.findViewById(R.id.btnAdd);
+
+        btnselectimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.pickImage(AddProperty.this, "Select your image:");
+            }
+        });
 
         if (sptype.getSelectedItem().toString().equalsIgnoreCase("Residential")){
 
@@ -202,12 +243,143 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
 
         }
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("pa_type", sptype.getSelectedItem().toString());
+                    jsonObject.put("pa_roomtype", sproom.getSelectedItem().toString());
+                    jsonObject.put("pa_image", image_path);
+
+                    RoomImagesArray.put(jsonObject);
+
+                    image_path = "";
+
+                    addRoomData();
+
+                    d.dismiss();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
         d.show();
+    }
+
+    public void addRoomData() {
+
+        try {
+
+            if (RoomImagesArray.length() > 0) {
+
+                ll_roomData.removeAllViews();
+
+                for (int i = 0; i < RoomImagesArray.length(); i++) {
+
+                    JSONObject jobj = RoomImagesArray.getJSONObject(i);
+
+                    View vs = LayoutInflater.from(this).inflate(R.layout.layout_room_data, null);
+
+                    ImageView room_image = (ImageView) vs.findViewById(R.id.room_image);
+                    TextView room_name = (TextView) vs.findViewById(R.id.room_name);
+
+                    room_name.setText(jobj.getString("pa_roomtype"));
+
+                    Picasso.get().load(Constants.Webserive_Url + jobj.getString("pa_image")).into(room_image);
+
+                    ll_roomData.addView(vs);
+
+
+                }
+
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
     public void ClickonSelectImages(View view) {
 
         showaddroomdialog();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String img_path = ImagePicker.getImagePathFromResult(this, requestCode, resultCode, data);
+        // TODO do something with the bitmap
+
+        File f = new File(img_path);
+
+        Uri uri = Uri.fromFile(f);
+
+        img_room.setImageURI(uri);
+
+        try {
+            uploadPhoto(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void uploadPhoto(File myFile) throws FileNotFoundException {
+
+
+                AsyncHttpClient client = new AsyncHttpClient();
+                RequestParams params = new RequestParams();
+
+                if (myFile != null) {
+                    Log.v("File ", "with compress===>");
+                    params.put("uploaded_file", myFile);
+                } else {
+                    Log.v("File ", "without compress===>");
+                    params.put("uploaded_file", myFile);
+                }
+                params.put("image_name", myFile.getName());
+
+                ResponseHandlerInterface handler = new TextHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        Log.v("image uplod onFailure", "onFailure===> " + responseString);
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+
+                        Toast.makeText(AddProperty.this, responseString, Toast.LENGTH_SHORT).show();
+                        //  listOfImages.get(position).setImageName();
+                        //  {"status":"error","status_error":"Invalid request !!"}
+                        try {
+                            JSONObject json = new JSONObject(responseString);
+                            if (json.getBoolean("status")) {
+
+                                image_path = json.getString("file_name");
+
+
+
+                            } else {
+                                // list_image.get(position).setImageName(json.get("uploded_file_name").toString());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                };
+
+                client.post(Constants.Webserive_Url+"file_upload.php", params, handler);
+
     }
 }

@@ -11,13 +11,34 @@
         android:id="@+id/sproom"/>
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Room Image"
-        android:id="@+id/tvroomimage"
-        android:layout_marginTop="16dp"
-        android:textSize="15dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/roomimages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Room Images"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnselectimage"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:onClick="ClickonSelectImages"
+            android:paddingLeft="16dp"
+            android:textSize="12sp"
+            android:text="Select Images" />
+
+
+    </LinearLayout>
+
+
+
 
     <ImageView
         android:layout_width="match_parent"
