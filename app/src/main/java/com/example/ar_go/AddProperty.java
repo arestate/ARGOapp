@@ -52,7 +52,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
     Button btnselectimage;
 
     LinearLayout ll_roomData;
-    EditText edtname,edtaddress,edtdimension,edtcategory,edtplanfile,edtdetails;
+    EditText edtname,edtaddress,edtdimension,edtcategory,edtplanfile,edtdetails,edtamenities;
     Button btnAdd;
     Spinner sptype;
 
@@ -97,6 +97,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         edtcategory = (EditText) findViewById(R.id.edtcategory);
         edtplanfile = (EditText) findViewById(R.id.edtplanfile);
         edtdetails = (EditText) findViewById(R.id.edtdetails);
+        edtamenities = (EditText) findViewById(R.id.edtamenities);
 
 
 
@@ -145,6 +146,12 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
                     return;
                 }
 
+                if (!CommonFunctions.checkstring(edtamenities.getText().toString())) {
+                    edtamenities.setError("Enter your property amenities");
+                    edtamenities.requestFocus();
+                    return;
+                }
+
 
                 HashMap<String, String> params = new HashMap<>();
 
@@ -156,6 +163,7 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
                 params.put("p_category",edtcategory.getText().toString());
                 params.put("p_plan_file",edtplanfile.getText().toString());
                 params.put("p_details",edtdetails.getText().toString());
+                params.put("p_amenities",edtamenities.getText().toString());
                 params.put("p_external_photo", "");
                 params.put("p_internal_photo", "");
                 params.put("p_latitude", "73.15");
@@ -171,10 +179,6 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
         });
 
 
-
-
-
-
     }
 
     @Override
@@ -182,12 +186,30 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
 
         try {
 
-            Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+            if (tag.equalsIgnoreCase("add_propertyarea")){
 
-            if (jsonObject.getString("response").equalsIgnoreCase("1")) {
-                finish();
+                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
 
+            }
+            else {
+
+                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+
+                if (jsonObject.getString("response").equalsIgnoreCase("1")) {
+
+                    String id = jsonObject.getString("id");
+
+                    String url = Constants.Webserive_Url + "add_propertyarea.php";
+
+                    JSONObject params = new JSONObject();
+                    params.put("p_id", id);
+                    params.put("data", RoomImagesArray);
+
+                    volley.CallVolleyJSON(url, params, "add_propertyarea");
+
+
+                }
             }
         }
 

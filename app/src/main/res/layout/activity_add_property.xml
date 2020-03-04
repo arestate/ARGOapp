@@ -188,6 +188,28 @@
             android:paddingBottom="20dp"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/tvamen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp"
+            android:text="Property Amenities"
+            android:textAllCaps="false"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtamenities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="Amenities"
+            android:padding="16dp"
+            android:paddingBottom="20dp"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
 
