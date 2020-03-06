@@ -28,9 +28,13 @@ public class PropertyResultVo {
     @SerializedName("p_plan_file")
     @Expose
     private String pPlanFile;
+
     @SerializedName("p_details")
     @Expose
     private String pDetails;
+    @SerializedName("p_amenities")
+    @Expose
+    private String pAmenities;
     @SerializedName("p_external_photo")
     @Expose
     private String pExternalPhoto;
@@ -143,4 +147,8 @@ public class PropertyResultVo {
     public void setPLongitude(String pLongitude) {
         this.pLongitude = pLongitude;
     }
+
+    public String getpAmenities() { return pAmenities; }
+
+    public void setpAmenities(String pLongitude) { this.pAmenities = pAmenities; }
 }

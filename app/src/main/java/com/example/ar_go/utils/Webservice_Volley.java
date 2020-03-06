@@ -85,6 +85,50 @@ public class Webservice_Volley {
 
     }
 
+
+    public void CallVolleyJSON(String url,JSONObject map,final String tag)
+    {
+
+
+        progressDialog.show();
+
+        try {
+
+            JsonObjectRequest obreq;
+            obreq = new JsonObjectRequest(Request.Method.POST,url,map,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            da.getData(response,tag);
+                            progressDialog.dismiss();
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "errorr++"+error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+            obreq.setRetryPolicy(new DefaultRetryPolicy(600000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            // Adds the JSON object request "obreq" to the request queue
+            requestQueue.add(obreq);
+
+        }
+        catch (Exception e) {
+            progressDialog.dismiss();
+            Toast.makeText(context, "--" + e, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     public void CallVolley_location(String url,HashMap<String,String> map,final String tag)
     {
 
