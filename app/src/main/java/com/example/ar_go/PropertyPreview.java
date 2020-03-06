@@ -2,11 +2,14 @@ package com.example.ar_go;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,10 +18,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
+import com.example.ar_go.Adapter.RoomComponentsListAdapter;
+import com.example.ar_go.Models.RoomComponentResultVo;
+import com.example.ar_go.Models.RoomComponentsInfoVo;
+import com.example.ar_go.utils.Constants;
 import com.google.android.cameraview.CameraView;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 
-public class PropertyPreview extends AppCompatActivity {
+public class PropertyPreview extends AppCompatActivity implements RoomComponentsListAdapter.OnItemClickListner {
     private CameraView mCameraView;
     private ImageView image,image1;
     private ImageView imgpick;
@@ -54,10 +63,33 @@ public class PropertyPreview extends AppCompatActivity {
     private float[] lastEvent = null;
     Bitmap bmp= null;
 
+    RecyclerView recvRoomComponent;
+
+    RoomComponentsInfoVo roomComponentsInfoVo = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_preview);
+
+        recvRoomComponent = (RecyclerView)findViewById(R.id.recvRoomComponent);
+        recvRoomComponent.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        String data = getIntent().getStringExtra("data");
+
+        if (!TextUtils.isEmpty(data)) {
+
+            roomComponentsInfoVo = new Gson().fromJson(data,RoomComponentsInfoVo.class);
+
+            if (roomComponentsInfoVo != null) {
+
+                RoomComponentsListAdapter adapter = new RoomComponentsListAdapter(roomComponentsInfoVo.getResult(),this);
+                recvRoomComponent.setAdapter(adapter);
+
+            }
+
+        }
+
         mCameraView = (CameraView) findViewById(R.id.camera);
         image = (ImageView) findViewById(R.id.image);
         image1 = (ImageView) findViewById(R.id.image1);
@@ -300,6 +332,8 @@ public class PropertyPreview extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        mCameraView.start();
+
     }
 
     @Override
@@ -368,8 +402,17 @@ public class PropertyPreview extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemListener(int pos, RoomComponentResultVo roomComponentResultVo) {
+
+        image.setVisibility(View.VISIBLE);
+
+        if (!TextUtils.isEmpty(roomComponentResultVo.getRImage())) {
+            Picasso.get().load(Constants.IMAGE_Url + roomComponentResultVo.getRImage()).into(image);
+        }
 
 
+    }
 }
 
 

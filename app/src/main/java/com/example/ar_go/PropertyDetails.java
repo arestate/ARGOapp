@@ -2,6 +2,7 @@ package com.example.ar_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -11,18 +12,27 @@ import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ar_go.Adapter.MyListAdapter;
 import com.example.ar_go.Models.PropertyResultVo;
+import com.example.ar_go.Models.PropertyinfoVo;
+import com.example.ar_go.Models.RoomComponentsInfoVo;
 import com.example.ar_go.utils.Constants;
+import com.example.ar_go.utils.DataInterface;
+import com.example.ar_go.utils.Webservice_Volley;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-public class PropertyDetails extends AppCompatActivity {
+import java.util.HashMap;
+
+public class PropertyDetails extends AppCompatActivity implements DataInterface {
     ImageView imageView,img_amn1;
     TextView tvpname,tvaddress,tvamn1,tvdescription;
     LinearLayout ll_amenities;
+    Webservice_Volley volley;
 
     PropertyResultVo propertyResultVo;
 
@@ -38,6 +48,7 @@ public class PropertyDetails extends AppCompatActivity {
         tvamn1=(TextView) findViewById(R.id.tvamn1);
         tvdescription=(TextView) findViewById(R.id.tvdescription);
         ll_amenities = (LinearLayout)findViewById(R.id.ll_amenities);
+        volley = new Webservice_Volley(this, this);
 
         propertyResultVo= new Gson().fromJson(getIntent().getStringExtra("data"),PropertyResultVo.class);
 
@@ -62,6 +73,7 @@ public class PropertyDetails extends AppCompatActivity {
                         String s = amenities[i];
 
 
+
                         View vs = LayoutInflater.from(this).inflate(R.layout.layout_amenities, null);
 
                         TextView tvamn1 = (TextView) vs.findViewById(R.id.tvamn1);
@@ -78,7 +90,60 @@ public class PropertyDetails extends AppCompatActivity {
 
 
 
+
+
         }
+
+    }
+
+    public void ClickonCustomize(View view) {
+
+        String url = Constants.Webserive_Url + "get_roomcomponent.php";
+
+        HashMap<String,String> params = new HashMap<>();
+        params.put("r_type", propertyResultVo.getPType());
+
+        volley.CallVolley(url, params, "get_roomcomponent");
+
+    }
+
+    @Override
+    public void getData(JSONObject jsonObject, String tag) {
+
+        try {
+
+            if (tag.equalsIgnoreCase("get_roomcomponent")){
+
+                RoomComponentsInfoVo propertyinfoVo = new Gson().fromJson(jsonObject.toString(),RoomComponentsInfoVo.class);
+
+                if (propertyinfoVo != null) {
+
+                    if (propertyinfoVo.getResult() != null) {
+
+                        if (propertyinfoVo.getResult().size() > 0) {
+
+                            Intent i = new Intent(PropertyDetails.this,PropertyPreview.class);
+                            i.putExtra("data",new Gson().toJson(propertyinfoVo));
+                            startActivity(i);
+
+                        }
+
+                    }
+
+                }
+
+
+
+
+            }
+
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
     }
 }

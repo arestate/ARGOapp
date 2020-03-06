@@ -35,8 +35,8 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/sample_chair1"
         android:layout_centerVertical="true"
         android:visibility="gone"
@@ -62,10 +62,18 @@
         android:maxHeight="40dp"
         android:minHeight="40dp"
         android:thumbTint="@color/colorPrimary"
+        android:layout_above="@+id/recvRoomComponent"
         android:thumbOffset="18dp"
         android:background="#afff"
-        android:layout_alignParentBottom="true"
         android:visibility="visible"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/recvRoomComponent"/>
 
 
 </RelativeLayout>

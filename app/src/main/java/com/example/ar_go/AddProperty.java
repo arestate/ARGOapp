@@ -186,30 +186,30 @@ public class AddProperty extends AppCompatActivity implements DataInterface {
 
         try {
 
-            if (tag.equalsIgnoreCase("add_propertyarea")){
+                        if (tag.equalsIgnoreCase("add_propertyarea")){
 
-                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
-
-            }
-            else {
-
-                Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
-                if (jsonObject.getString("response").equalsIgnoreCase("1")) {
-
-                    String id = jsonObject.getString("id");
-
-                    String url = Constants.Webserive_Url + "add_propertyarea.php";
-
-                    JSONObject params = new JSONObject();
-                    params.put("p_id", id);
-                    params.put("data", RoomImagesArray);
-
-                    volley.CallVolleyJSON(url, params, "add_propertyarea");
+                            Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
 
-                }
+                        }
+                        else {
+
+                            Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+
+                            if (jsonObject.getString("response").equalsIgnoreCase("1")) {
+
+                                String id = jsonObject.getString("id");
+
+                                String url = Constants.Webserive_Url + "add_propertyarea.php";
+
+                                JSONObject params = new JSONObject();
+                                params.put("p_id", id);
+                                params.put("data", RoomImagesArray);
+
+                                volley.CallVolleyJSON(url, params, "add_propertyarea");
+
+
+                            }
             }
         }
 
