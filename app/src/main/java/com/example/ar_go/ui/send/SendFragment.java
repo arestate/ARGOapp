@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.example.ar_go.ApiModels.BuilderinfoVo;
 import com.example.ar_go.Models.UserInfoVo;
 import com.example.ar_go.R;
 import com.example.ar_go.utils.AllSharedPrefernces;
+import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -31,6 +34,7 @@ public class SendFragment extends Fragment implements DataInterface {
 
     private SendViewModel sendViewModel;
     EditText edtemail, edtadd, edtcontact;
+    Button btnEdit;
     TextView tvname;
 
     Webservice_Volley volley;
@@ -40,23 +44,41 @@ public class SendFragment extends Fragment implements DataInterface {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_share, container, false);
 
+
                 tvname=(TextView) root.findViewById(R.id.tvname);
                 edtemail = (EditText) root.findViewById(R.id.edtemail);
                 edtadd = (EditText) root.findViewById(R.id.edtadd);
                 edtcontact = (EditText) root.findViewById(R.id.edtcontact);
-
+                btnEdit =(Button)root.findViewById(R.id.btnEdit);
                 volley = new Webservice_Volley(getActivity(), this);
                 allSharedPrefernces=new AllSharedPrefernces(getActivity());
 
-                HashMap<String, String> params = new HashMap<>();
+                final   HashMap<String, String> params = new HashMap<>();
 
                 params.put("b_id",allSharedPrefernces.getCustomerNo());
 
                 String url = Constants.Webserive_Url + "get_builderprofile.php";
 
                 volley.CallVolley(url, params, "get_builderprofile");
+                 btnEdit.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
 
-        return root;
+
+                         params.put("b_id", allSharedPrefernces.getCustomerNo());
+                         params.put("b_email", edtemail.getText().toString());
+                         params.put("b_contactno", edtcontact.getText().toString());
+                         params.put("b_address", edtadd.getText().toString());
+                         String url1 = Constants.Webserive_Url + "update_builderprofile.php";
+
+                         volley.CallVolley(url1, params, "update_builderprofile");
+
+                     }
+                 });
+
+
+
+                return root;
     }
 
 
@@ -80,7 +102,7 @@ public class SendFragment extends Fragment implements DataInterface {
 
             }
 
-
+            Toast.makeText(getActivity(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {

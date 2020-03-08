@@ -44,6 +44,7 @@ public class ShareFragment extends Fragment implements DataInterface {
                              ViewGroup container, Bundle savedInstanceState) {
 
 
+
         View root = inflater.inflate(R.layout.fragment_share, container, false);
 
         tvname=(TextView) root.findViewById(R.id.tvname);

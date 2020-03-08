@@ -1,8 +1,10 @@
 package com.example.ar_go;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -79,6 +81,7 @@ public class Login extends AppCompatActivity implements DataInterface {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void getData(JSONObject jsonObject, String tag) {
 
