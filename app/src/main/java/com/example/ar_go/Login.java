@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity implements DataInterface {
         setContentView(R.layout.activity_login);
 
 
+
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPass = (EditText) findViewById(R.id.edtPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.example.ar_go.Models.EnquiryInfoVo;
 import com.example.ar_go.Models.UserInfoVo;
 import com.example.ar_go.R;
 import com.example.ar_go.utils.AllSharedPrefernces;
+import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
@@ -33,6 +35,7 @@ public class ShareFragment extends Fragment implements DataInterface {
     private ShareViewModel shareViewModel;
     EditText edtemail, edtadd, edtcontact;
     TextView tvname;
+    Button btnEdit;
 
     Webservice_Volley volley;
     AllSharedPrefernces allSharedPrefernces;
@@ -47,11 +50,12 @@ public class ShareFragment extends Fragment implements DataInterface {
         edtemail = (EditText) root.findViewById(R.id.edtemail);
         edtadd = (EditText) root.findViewById(R.id.edtadd);
         edtcontact = (EditText) root.findViewById(R.id.edtcontact);
+        btnEdit=root.findViewById(R.id.btnEdit);
 
         volley = new Webservice_Volley(getActivity(), this);
         allSharedPrefernces=new AllSharedPrefernces(getActivity());
 
-        HashMap<String, String> params = new HashMap<>();
+        final HashMap<String, String> params = new HashMap<>();
 
         params.put("u_id",allSharedPrefernces.getCustomerNo());
 
@@ -60,6 +64,23 @@ public class ShareFragment extends Fragment implements DataInterface {
         volley.CallVolley(url, params, "get_userprofile");
 
 
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+
+
+        params.put("u_id",allSharedPrefernces.getCustomerNo());
+        params.put("u_email",edtemail.getText().toString());
+        params.put("u_contactno",edtcontact.getText().toString());
+        params.put("u_address",edtadd.getText().toString());
+        String url2 = Constants.Webserive_Url + "update_userprofile.php";
+
+        volley.CallVolley(url2, params, "upadte_userprofile");
+
+    }
+});
 
         return root;
     }
@@ -84,6 +105,7 @@ public class ShareFragment extends Fragment implements DataInterface {
 
             }
 
+            Toast.makeText(getActivity(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
 
         }
         catch (Exception e)
