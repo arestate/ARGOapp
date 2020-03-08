@@ -20,6 +20,7 @@ public class AllSharedPrefernces {
     boolean isUserLogin=false;
     Context c;
     String customerData = "";
+    String somevalue;
 
 
 
