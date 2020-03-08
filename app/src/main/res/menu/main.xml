@@ -25,7 +25,10 @@
         android:title="Right"
         app:showAsAction="always"/>
 
-
+<item
+    android:id="@+id/action_select_area"
+    android:title="Select Area"
+    app:showAsAction="never"/>
 
 
 

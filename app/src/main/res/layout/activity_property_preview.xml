@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:visibility="gone"
+        android:scaleType="fitXY"
         android:src="@drawable/sample_room"/>
 
     <!--<android.support.v7.widget.Toolbar

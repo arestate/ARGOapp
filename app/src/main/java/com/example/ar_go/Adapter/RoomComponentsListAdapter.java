@@ -16,11 +16,13 @@ import com.example.ar_go.R;
 import com.example.ar_go.utils.Constants;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class RoomComponentsListAdapter extends RecyclerView.Adapter<RoomComponentsListAdapter.ViewHolder>{
     private List<RoomComponentResultVo> listdata;
+    private List<RoomComponentResultVo> Mainlistdata;
 
     OnItemClickListner mListner;
 
@@ -94,4 +96,23 @@ public class RoomComponentsListAdapter extends RecyclerView.Adapter<RoomComponen
         public void onItemListener(int pos,RoomComponentResultVo roomComponentResultVo);
 
     }
+
+    public void filter(String text){
+        List<RoomComponentResultVo> temp = new ArrayList();
+        for(RoomComponentResultVo d: listdata){
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if(d.getRRoom().toLowerCase().contains(text.toLowerCase())){
+                temp.add(d);
+            }
+        }
+        //update recyclerview
+        updateList(temp);
+    }
+
+    public void updateList(List<RoomComponentResultVo> list){
+        listdata = list;
+        notifyDataSetChanged();
+    }
+
 }  

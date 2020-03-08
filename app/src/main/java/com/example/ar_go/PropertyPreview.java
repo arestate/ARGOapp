@@ -1,10 +1,12 @@
 package com.example.ar_go;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
@@ -15,16 +17,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.example.ar_go.Adapter.RoomComponentsListAdapter;
+import com.example.ar_go.Models.PropertyAreaInfoVo;
 import com.example.ar_go.Models.RoomComponentResultVo;
 import com.example.ar_go.Models.RoomComponentsInfoVo;
 import com.example.ar_go.utils.Constants;
 import com.google.android.cameraview.CameraView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 
 public class PropertyPreview extends AppCompatActivity implements RoomComponentsListAdapter.OnItemClickListner {
@@ -66,6 +72,11 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
     RecyclerView recvRoomComponent;
 
     RoomComponentsInfoVo roomComponentsInfoVo = null;
+    PropertyAreaInfoVo propertyAreaInfoVo = null;
+
+    ArrayList<String> AreaList = new ArrayList<>();
+
+    RoomComponentsListAdapter adapter= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +94,24 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
 
             if (roomComponentsInfoVo != null) {
 
-                RoomComponentsListAdapter adapter = new RoomComponentsListAdapter(roomComponentsInfoVo.getResult(),this);
+                adapter = new RoomComponentsListAdapter(roomComponentsInfoVo.getResult(),this);
                 recvRoomComponent.setAdapter(adapter);
 
+            }
+
+        }
+        String area_data = getIntent().getStringExtra("area_data");
+
+        if (!TextUtils.isEmpty(area_data)) {
+
+            propertyAreaInfoVo = new Gson().fromJson(area_data,PropertyAreaInfoVo.class);
+
+            if (propertyAreaInfoVo != null) {
+
+                for (int i=0 ; i< propertyAreaInfoVo.getResult().size(); i++)
+                {
+                    AreaList.add(propertyAreaInfoVo.getResult().get(i).getPaRoomtype());
+                }
             }
 
         }
@@ -397,6 +423,12 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
                 image.setRotation(r1);
 
                 return true;
+
+                case R.id.action_select_area:
+
+               getarealist();
+
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -411,6 +443,48 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
             Picasso.get().load(Constants.IMAGE_Url + roomComponentResultVo.getRImage()).into(image);
         }
 
+
+    }
+
+    public void getarealist()
+    {
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(PropertyPreview.this);
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PropertyPreview.this, android.R.layout.select_dialog_singlechoice,AreaList);
+
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String strName = arrayAdapter.getItem(which);
+
+                mCameraView.setVisibility(View.GONE);
+                imgpick.setVisibility(View.VISIBLE);
+
+                if (propertyAreaInfoVo != null) {
+
+                    if(propertyAreaInfoVo.getResult().size() > 0) {
+
+                        if (!TextUtils.isEmpty(propertyAreaInfoVo.getResult().get(which).getPaImage())) {
+                            Picasso.get().load(Constants.Webserive_Url+propertyAreaInfoVo.getResult().get(which).getPaImage()).into(imgpick);
+                        }
+
+                    }
+
+                }
+
+                if (adapter != null)
+                    adapter.filter(strName);
+
+            }
+        });
+        builderSingle.show();
 
     }
 }
