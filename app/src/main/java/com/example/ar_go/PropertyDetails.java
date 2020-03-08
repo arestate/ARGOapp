@@ -88,10 +88,6 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
                 }
             }
 
-
-
-
-
         }
 
     }
@@ -132,9 +128,6 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
 
                 }
 
-
-
-
             }
 
         }
@@ -144,6 +137,15 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
             e.printStackTrace();
         }
 
+    }
 
+    public void getpropertyarea()
+    {
+        String url = Constants.Webserive_Url + "get_roomcomponent.php";
+
+        HashMap<String,String> params = new HashMap<>();
+        params.put("r_type", propertyResultVo.getPType());
+
+        volley.CallVolley(url, params, "get_roomcomponent");
     }
 }
