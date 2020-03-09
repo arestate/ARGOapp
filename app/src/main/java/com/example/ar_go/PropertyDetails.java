@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.GetIntoAR.RealEstateAR.UnityPlayerActivity;
 import com.example.ar_go.Adapter.MyListAdapter;
 import com.example.ar_go.Models.PropertyAreaInfoVo;
 import com.example.ar_go.Models.PropertyResultVo;
@@ -105,6 +106,7 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
     }
     public void ClickonCustomize2(View view) {
 
+        startActivity(new Intent(this, UnityPlayerActivity.class));
 
 
     }

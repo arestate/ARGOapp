@@ -51,7 +51,7 @@ public class ShareFragment extends Fragment implements DataInterface {
         edtemail = (EditText) root.findViewById(R.id.edtemail);
         edtadd = (EditText) root.findViewById(R.id.edtadd);
         edtcontact = (EditText) root.findViewById(R.id.edtcontact);
-        btnEdit=root.findViewById(R.id.btnEdit);
+        btnEdit = (Button) root.findViewById(R.id.btnEdit);
 
         volley = new Webservice_Volley(getActivity(), this);
         allSharedPrefernces=new AllSharedPrefernces(getActivity());

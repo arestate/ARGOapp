@@ -95,7 +95,9 @@ Each occupant may freely use the apartments communal area: livingroom, bathroom 
             android:layout_margin="16dp"
             android:layout_gravity="right"
             android:onClick="ClickonCustomize"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label">
+        tools:replace="android:label,android:icon,android:roundIcon,android:theme">
         <activity android:name=".PropertyPreview"></activity>
         <activity
             android:name=".SplashActivity"
