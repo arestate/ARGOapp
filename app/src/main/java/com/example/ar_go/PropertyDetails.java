@@ -103,6 +103,12 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
         volley.CallVolley(url, params, "get_roomcomponent");
 
     }
+    public void ClickonCustomize2(View view) {
+
+
+
+    }
+
 
     RoomComponentsInfoVo propertyinfoVo;
 
