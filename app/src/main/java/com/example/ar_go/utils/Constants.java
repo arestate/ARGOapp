@@ -3,7 +3,7 @@ package com.example.ar_go.utils;
 public class Constants {
 
 
-   public static final String Webserive_Url="http://192.168.0.5:8880/project/api/";
+   public static final String Webserive_Url="http://192.168.0.19:80/project/api/";
    public static final String IMAGE_Url="http://192.168.0.5:8880/project";
 
    //public static final String Webserive_Url="http://nutritiondiet.kstechnologies.co/api/";

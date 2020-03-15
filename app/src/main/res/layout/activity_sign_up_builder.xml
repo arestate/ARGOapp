@@ -162,28 +162,6 @@
         android:paddingBottom="20dp"
         android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvlogo"
-        android:text="Logo"
-        android:textAllCaps="false"
-        android:paddingBottom="8dp"
-        android:paddingTop="10dp"
-        android:textSize="15sp"/>
-
-    <EditText
-        android:id="@+id/edtlogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Logo"
-        android:padding="16dp"
-        android:layout_marginBottom="6dp"
-        android:paddingBottom="20dp"
-        android:textSize="16sp"
-        android:gravity="left"
-        android:background="@drawable/edittext_background"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -208,6 +186,50 @@
         android:textSize="16sp"
         android:gravity="left"
         android:background="@drawable/edittext_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvlogo"
+        android:text="Builder Logo"
+        android:textAllCaps="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="10dp"
+        android:textSize="15sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/roomimages"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Logo"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnselectimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="ClickonSelectImages"
+            android:paddingLeft="16dp"
+            android:text="Select Images" />
+
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/img_builder"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ar_image"/>
+
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"

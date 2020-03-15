@@ -45,7 +45,8 @@ import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
 
-public class AddProperty extends AppCompatActivity implements DataInterface {
+public class
+AddProperty extends AppCompatActivity implements DataInterface {
 
     Webservice_Volley volley;
     AllSharedPrefernces allSharedPrefernces;
