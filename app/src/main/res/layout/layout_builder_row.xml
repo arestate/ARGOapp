@@ -16,7 +16,7 @@
             android:padding="12dp"
             android:layout_gravity="center"
             android:background="@drawable/image_bg"
-            android:src="@drawable/ic_action_amenities" />
+            android:src="@drawable/lilleria" />
 
         <TextView
             android:id="@+id/txt_buildername"

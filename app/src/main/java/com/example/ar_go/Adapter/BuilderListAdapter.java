@@ -1,5 +1,6 @@
 package com.example.ar_go.Adapter;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ar_go.ApiModels.BuilderResultVo;
 import com.example.ar_go.Models.PropertyResultVo;
 import com.example.ar_go.R;
+import com.example.ar_go.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,7 +44,9 @@ public class BuilderListAdapter extends RecyclerView.Adapter<BuilderListAdapter.
 
 
         holder.txt_buildername.setText(builderResultVo.getBName());
-
+        if (!TextUtils.isEmpty(builderResultVo.getBLogo())) {
+            Picasso.get().load(Constants.Webserive_Url + builderResultVo.getBLogo()).into(holder.img_builder);
+        }
 
     }  
   

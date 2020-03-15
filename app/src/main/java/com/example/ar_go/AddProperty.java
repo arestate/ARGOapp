@@ -63,6 +63,10 @@ AddProperty extends AppCompatActivity implements DataInterface {
 
     JSONArray RoomImagesArray = new JSONArray();
 
+    public int IMAGE_MODE = 000;
+
+    String internal_image_path = "", external_image_path = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +103,9 @@ AddProperty extends AppCompatActivity implements DataInterface {
         edtplanfile = (EditText) findViewById(R.id.edtplanfile);
         edtdetails = (EditText) findViewById(R.id.edtdetails);
         edtamenities = (EditText) findViewById(R.id.edtamenities);
+
+        img_int = (ImageView) findViewById(R.id.img_int);
+        img_ext = (ImageView) findViewById(R.id.img_ext);
 
 
 
@@ -165,8 +172,8 @@ AddProperty extends AppCompatActivity implements DataInterface {
                 params.put("p_plan_file",edtplanfile.getText().toString());
                 params.put("p_details",edtdetails.getText().toString());
                 params.put("p_amenities",edtamenities.getText().toString());
-                params.put("p_external_photo", "");
-                params.put("p_internal_photo", "");
+                params.put("p_external_photo", external_image_path);
+                params.put("p_internal_photo", internal_image_path);
                 params.put("p_latitude", "73.15");
                 params.put("p_longitude", "23.31");
 
@@ -222,7 +229,7 @@ AddProperty extends AppCompatActivity implements DataInterface {
 
     }
 
-    ImageView img_room;
+    ImageView img_room,img_int,img_ext;
     Spinner sproom;
     String image_path = "";
     public void showaddroomdialog()
@@ -242,13 +249,15 @@ AddProperty extends AppCompatActivity implements DataInterface {
 
         sproom = (Spinner) d.findViewById(R.id.sproom);
         img_room = (ImageView) d.findViewById(R.id.img_room);
+
         btnselectimage = (Button) d.findViewById(R.id.btnselectimage);
         Button btnAdd = (Button) d.findViewById(R.id.btnAdd);
 
         btnselectimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImagePicker.pickImage(AddProperty.this, "Select your image:");
+                IMAGE_MODE = 999;
+                ImagePicker.pickImage(AddProperty.this,999);
             }
         });
 
@@ -337,20 +346,61 @@ AddProperty extends AppCompatActivity implements DataInterface {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String img_path = ImagePicker.getImagePathFromResult(this, requestCode, resultCode, data);
-        // TODO do something with the bitmap
 
-        File f = new File(img_path);
 
-        Uri uri = Uri.fromFile(f);
+        if (requestCode == 111){
 
-        img_room.setImageURI(uri);
+            String img_path = ImagePicker.getImagePathFromResult(this, requestCode, resultCode, data);
+            // TODO do something with the bitmap
 
-        try {
-            uploadPhoto(f);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            File f = new File(img_path);
+
+            Uri uri = Uri.fromFile(f);
+
+            img_int.setImageURI(uri);
+
+            try {
+                uploadPhoto(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
+
+        else if(requestCode==222){
+            String img_path = ImagePicker.getImagePathFromResult(this, requestCode, resultCode, data);
+            // TODO do something with the bitmap
+
+            File f = new File(img_path);
+
+            Uri uri = Uri.fromFile(f);
+
+            img_ext.setImageURI(uri);
+
+            try {
+                uploadPhoto(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(requestCode==999){
+            String img_path = ImagePicker.getImagePathFromResult(this, requestCode, resultCode, data);
+            // TODO do something with the bitmap
+
+            File f = new File(img_path);
+
+            Uri uri = Uri.fromFile(f);
+
+            img_room.setImageURI(uri);
+
+            try {
+                uploadPhoto(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
     }
 
@@ -387,7 +437,20 @@ AddProperty extends AppCompatActivity implements DataInterface {
                             JSONObject json = new JSONObject(responseString);
                             if (json.getBoolean("status")) {
 
-                                image_path = json.getString("file_name");
+                                if (IMAGE_MODE == 111) {
+
+                                    internal_image_path = json.getString("file_name");
+
+                                }
+                                else if (IMAGE_MODE == 222) {
+
+                                    external_image_path = json.getString("file_name");
+
+                                }
+                                else {
+
+                                    image_path = json.getString("file_name");
+                                }
 
 
 
@@ -404,5 +467,16 @@ AddProperty extends AppCompatActivity implements DataInterface {
 
                 client.post(Constants.Webserive_Url+"file_upload.php", params, handler);
 
+    }
+
+    public void ClickonSelectinternalImages(View view) {
+        IMAGE_MODE = 111;
+        ImagePicker.pickImage(AddProperty.this, 111);
+
+    }
+
+    public void ClickonSelectExternalImages(View view) {
+        IMAGE_MODE = 222;
+        ImagePicker.pickImage(AddProperty.this, 222);
     }
 }

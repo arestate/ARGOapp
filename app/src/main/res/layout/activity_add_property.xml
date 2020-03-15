@@ -257,6 +257,103 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/internalimages"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Internal Images"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnselectimage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickonSelectinternalImages"
+                android:paddingLeft="16dp"
+                android:text="Select Images" />
+
+
+
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/img_int"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ar_image"/>
+
+        <LinearLayout
+            android:id="@+id/ll_roomData1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/externalimages"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="External Images"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnselectimage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ClickonSelectExternalImages"
+                android:paddingLeft="16dp"
+                android:text="Select Images" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/img_ext"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ar_image"/>
+
+        <LinearLayout
+            android:id="@+id/ll_roomData2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
