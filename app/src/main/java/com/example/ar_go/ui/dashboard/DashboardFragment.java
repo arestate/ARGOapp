@@ -101,7 +101,7 @@ public class DashboardFragment extends Fragment implements DataInterface {
 
                         if (propertyinfoVo.getResult().size() > 0) {
 
-                            MyListAdapter adapter = new MyListAdapter(propertyinfoVo.getResult());
+                            MyListAdapter adapter = new MyListAdapter(getActivity(),propertyinfoVo.getResult());
                             recvProperties.setAdapter(adapter);
 
                         }

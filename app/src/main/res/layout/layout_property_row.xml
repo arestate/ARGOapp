@@ -9,6 +9,15 @@
     android:layout_marginRight="12dp">
 
     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgfavorite"
+        android:src="@drawable/favorites"
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
         android:id="@+id/imgproperty"
         android:layout_width="130dp"
         android:layout_height="140dp"
@@ -38,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:id="@+id/price"
-        android:text="$ 35 lac"
+        android:text="Rs 35 lac"
         android:textSize="13sp"
         android:textColor="@android:color/holo_blue_dark"/>
    <LinearLayout

@@ -21,6 +21,7 @@ public class AllSharedPrefernces {
     Context c;
     String customerData = "";
     String somevalue;
+    String cartList;
 
 
 
@@ -126,6 +127,19 @@ public class AllSharedPrefernces {
     public void ClearAllData() {
         SharedPreferences.Editor editor = c.getSharedPreferences("MyPreff", MODE_PRIVATE).edit();
         editor.clear();
+        editor.apply();
+    }
+
+    public String getCartList() {
+        SharedPreferences prefs = c.getSharedPreferences("MyPreff", MODE_PRIVATE);
+        this.cartList = prefs.getString("cartList", "");
+        return cartList;
+    }
+
+    public void setCartList(String cartList) {
+        SharedPreferences.Editor editor = c.getSharedPreferences("MyPreff", MODE_PRIVATE).edit();
+        this.cartList = cartList;
+        editor.putString("cartList", cartList);
         editor.apply();
     }
 

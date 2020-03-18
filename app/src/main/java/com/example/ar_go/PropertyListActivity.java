@@ -1,6 +1,7 @@
 package com.example.ar_go;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,7 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
     Webservice_Volley volley;
     RecyclerView recvBuilder;
 
+    String b_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +32,14 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
         setContentView(R.layout.activity_property_list);
 
         recvBuilder = (RecyclerView)findViewById(R.id.recvBuilder);
-        recvBuilder.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recvBuilder.setLayoutManager(new GridLayoutManager(this,2));
 
+        b_id = getIntent().getStringExtra("b_id");
 
         volley = new Webservice_Volley(this, this);
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("b_id","2");
+        params.put("b_id",b_id);
 
         String url = Constants.Webserive_Url + "get_property_based_on_builders.php";
 
@@ -50,7 +53,7 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
 
         try {
 
-            Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
 
             PropertyinfoVo propertyinfoVo = new Gson().fromJson(jsonObject.toString(),PropertyinfoVo.class);
 
@@ -60,7 +63,7 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
 
                     if (propertyinfoVo.getResult().size() > 0) {
 
-                        MyListAdapter adapter = new MyListAdapter(propertyinfoVo.getResult());
+                        MyListAdapter adapter = new MyListAdapter(PropertyListActivity.this,propertyinfoVo.getResult());
                         recvBuilder.setAdapter(adapter);
 
                     }

@@ -1,5 +1,6 @@
 package com.example.ar_go.Adapter;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ar_go.ApiModels.BuilderResultVo;
 import com.example.ar_go.Models.PropertyResultVo;
+import com.example.ar_go.PropertyListActivity;
 import com.example.ar_go.R;
 import com.example.ar_go.utils.Constants;
 import com.squareup.picasso.Picasso;
@@ -38,15 +40,24 @@ public class BuilderListAdapter extends RecyclerView.Adapter<BuilderListAdapter.
 
 
     @Override  
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        BuilderResultVo builderResultVo = listdata.get(position);
+        final BuilderResultVo builderResultVo = listdata.get(position);
 
 
         holder.txt_buildername.setText(builderResultVo.getBName());
         if (!TextUtils.isEmpty(builderResultVo.getBLogo())) {
             Picasso.get().load(Constants.Webserive_Url + builderResultVo.getBLogo()).into(holder.img_builder);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(holder.itemView.getContext(), PropertyListActivity.class);
+                i.putExtra("b_id",builderResultVo.getBId());
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
 
     }  
   

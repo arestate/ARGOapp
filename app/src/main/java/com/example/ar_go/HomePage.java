@@ -90,7 +90,7 @@ public class HomePage extends AppCompatActivity implements DataInterface {
 
                         if (propertyinfoVo.getResult().size() > 0) {
 
-                            MyListAdapter adapter = new MyListAdapter(propertyinfoVo.getResult());
+                            MyListAdapter adapter = new MyListAdapter(HomePage.this,propertyinfoVo.getResult());
                             recvProperties.setAdapter(adapter);
 
                         }
