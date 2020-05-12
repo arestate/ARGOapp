@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
@@ -26,6 +29,11 @@ import com.example.ar_go.Models.PropertyAreaInfoVo;
 import com.example.ar_go.Models.RoomComponentResultVo;
 import com.example.ar_go.Models.RoomComponentsInfoVo;
 import com.example.ar_go.utils.Constants;
+import com.example.ar_go.utils.DragRectView;
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.cameraview.CameraView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -37,6 +45,8 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
     private CameraView mCameraView;
     private ImageView image,image1;
     private ImageView imgpick;
+    private FrameLayout fl_image;
+    DragRectView dragRectView;
     SeekBar seekBar;
     //PhotoViewAttacher photoAttacher;
 
@@ -99,6 +109,15 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
 
             }
 
+            if (null != dragRectView) {
+                dragRectView.setOnUpCallback(new DragRectView.OnUpCallback() {
+                    @Override
+                    public void onRectFinished(final Rect rect) {
+
+                    }
+                });
+            }
+
         }
         String area_data = getIntent().getStringExtra("area_data");
 
@@ -120,6 +139,8 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
         image = (ImageView) findViewById(R.id.image);
         image1 = (ImageView) findViewById(R.id.image1);
         imgpick = (ImageView) findViewById(R.id.imgpick);
+        fl_image = (FrameLayout) findViewById(R.id.fl_image);
+        dragRectView = (DragRectView) findViewById(R.id.dragRect);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         if (mCameraView != null) {
             mCameraView.addCallback(mCallback);
@@ -429,6 +450,37 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
                getarealist();
 
                 return true;
+            case R.id.select_color:
+
+                ColorPickerDialogBuilder
+                        .with(this)
+                        .setTitle("Choose color")
+                        .initialColor(Color.WHITE)
+                        .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
+                        .density(12)
+                        .setOnColorSelectedListener(new OnColorSelectedListener() {
+                            @Override
+                            public void onColorSelected(int selectedColor) {
+
+                            }
+                        })
+                        .setPositiveButton("ok", new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+
+                                dragRectView.setmRectPaint(selectedColor);
+
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .build()
+                        .show();
+
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -466,6 +518,7 @@ public class PropertyPreview extends AppCompatActivity implements RoomComponents
 
                 mCameraView.setVisibility(View.GONE);
                 imgpick.setVisibility(View.VISIBLE);
+                fl_image.setVisibility(View.VISIBLE);
 
                 if (propertyAreaInfoVo != null) {
 

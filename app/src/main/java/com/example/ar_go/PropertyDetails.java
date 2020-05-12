@@ -56,6 +56,8 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
 
         if (propertyResultVo != null) {
 
+            getSupportActionBar().setTitle(propertyResultVo.getPName());
+
             tvpname.setText(propertyResultVo.getPName());
             tvaddress.setText(propertyResultVo.getPAddress());
             tvdescription.setText(propertyResultVo.getPDetails());
@@ -64,29 +66,28 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
                 Picasso.get().load(propertyResultVo.getPExternalPhoto()).resize(200,200).into(imageView);
             }
 
-            String[] amenities = propertyResultVo.getpAmenities().split(",");
-            if (amenities!= null)
-            {
-                if (amenities.length > 0)
-                {
+            if (!TextUtils.isEmpty(propertyResultVo.getpAmenities())) {
+                String[] amenities = propertyResultVo.getpAmenities().split(",");
+                if (amenities != null) {
+                    if (amenities.length > 0) {
 
-                    for (int i = 0; i < amenities.length; i++) {
+                        for (int i = 0; i < amenities.length; i++) {
 
-                        String s = amenities[i];
-
+                            String s = amenities[i];
 
 
-                        View vs = LayoutInflater.from(this).inflate(R.layout.layout_amenities, null);
+                            View vs = LayoutInflater.from(this).inflate(R.layout.layout_amenities, null);
 
-                        TextView tvamn1 = (TextView) vs.findViewById(R.id.tvamn1);
+                            TextView tvamn1 = (TextView) vs.findViewById(R.id.tvamn1);
 
-                        tvamn1.setText(s);
+                            tvamn1.setText(s);
 
-                        ll_amenities.addView(vs);
+                            ll_amenities.addView(vs);
 
+
+                        }
 
                     }
-
                 }
             }
 
@@ -204,5 +205,20 @@ public class PropertyDetails extends AppCompatActivity implements DataInterface 
         params.put("p_id", propertyResultVo.getPId());
 
         volley.CallVolley(url, params, "get_propertyarea");
+    }
+
+    public void ClickOnEnquiry(View view) {
+
+        Intent i = new Intent(PropertyDetails.this,UserEnquiry.class);
+        i.putExtra("data",new Gson().toJson(propertyResultVo));
+        startActivity(i);
+    }
+
+    public void ClickOnFeedback(View view) {
+
+        Intent i = new Intent(PropertyDetails.this,Feedback.class);
+        i.putExtra("data",new Gson().toJson(propertyResultVo));
+        startActivity(i);
+
     }
 }

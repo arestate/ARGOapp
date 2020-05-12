@@ -9,6 +9,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/recycle_favorites"/>
+        android:id="@+id/recycle_favorites"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"/>
 
 </LinearLayout>

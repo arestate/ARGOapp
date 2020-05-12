@@ -12,6 +12,9 @@ public class EnquiryResultVo {
     @SerializedName("e_details")
     @Expose
     private String eDetails;
+    @SerializedName("e_reply")
+    @Expose
+    private String eReply;
     @SerializedName("u_id")
     @Expose
     private String uId;
@@ -202,5 +205,11 @@ public class EnquiryResultVo {
         this.pLongitude = pLongitude;
     }
 
+    public String geteReply() {
+        return eReply;
+    }
 
+    public void seteReply(String eReply) {
+        this.eReply = eReply;
+    }
 }

@@ -1,14 +1,17 @@
 package com.example.ar_go.Adapter;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ar_go.Models.PropertyResultVo;
 import com.example.ar_go.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,7 +44,9 @@ public class BuilderPropertyListAdapter extends RecyclerView.Adapter<BuilderProp
         holder.tvdimensions.setText(propertyResultVo.getPDimensions());
         holder.aptname.setText(propertyResultVo.getPName());
 
-
+        if(!TextUtils.isEmpty(propertyResultVo.getPExternalPhoto())){
+            Picasso.get().load(propertyResultVo.getPExternalPhoto()).resize(200,200).into(holder.imgProperty);
+        }
     }  
   
   
@@ -55,10 +60,13 @@ public class BuilderPropertyListAdapter extends RecyclerView.Adapter<BuilderProp
     public static class ViewHolder extends RecyclerView.ViewHolder {  
 
         TextView aptname,tvaddress,tvdimensions;
+        ImageView imgProperty;
 
 
         public ViewHolder(View itemView) {  
-            super(itemView);  
+            super(itemView);
+
+            imgProperty = (ImageView)itemView.findViewById(R.id.imgProperty);
 
             aptname=(TextView)itemView.findViewById(R.id.Aptname);
             tvaddress = (TextView)itemView.findViewById(R.id.tvaddress);

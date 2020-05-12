@@ -16,6 +16,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/select_color"
+        android:title="color"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_color"/>
+
+    <item
         android:id="@+id/rotate_left"
         android:title="Left"
         app:showAsAction="always"/>

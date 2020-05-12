@@ -221,4 +221,5 @@ public class SignUpBuilder extends AppCompatActivity implements DataInterface {
 
         client.post(Constants.Webserive_Url+"file_upload.php", params, handler);
 
-    } }
+    }
+}

@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    android:paddingTop="10dp">
+    android:layout_marginTop="10dp"
+    android:background="@android:color/white"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/p_name"
@@ -22,11 +24,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:textStyle="normal"
+        android:textStyle="italic"
         android:text="Property Details"
         android:layout_marginBottom="10dp"
         android:textColor="@android:color/black"
        />
+
+    <TextView
+        android:id="@+id/txt_ereply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:text="Reply"
+        android:layout_marginBottom="10dp"
+        android:textColor="#0000FF"
+        />
 
     <TextView
         android:id="@+id/p_date"
@@ -35,8 +48,38 @@
         android:textSize="14sp"
         android:textStyle="normal"
         android:gravity="right"
-        android:layout_marginBottom="10dp"
         android:textColor="@android:color/darker_gray"
         android:text="Date"
         />
+
+    <LinearLayout
+        android:id="@+id/ll_reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txt_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reply"
+        android:textColor="#0000FF"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:drawablePadding="8dp"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_action_reply"
+        android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>

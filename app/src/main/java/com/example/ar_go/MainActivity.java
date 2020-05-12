@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
         try {
             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
+            if (jsonObject.getString("response").equalsIgnoreCase("1")) {
+
+                finish();
+
+            }
+
         } catch (Exception e) {
 
             e.printStackTrace();

@@ -9,31 +9,32 @@
             android:icon="@drawable/hicon"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_fav"
             android:icon="@drawable/ui"
             android:title="Favourites" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/rs"
-            android:title="Recent Search" />
+            android:title="Recent Search"
+            android:visible="false"/>
 
     </group>
 
     <item android:title="Property Search">
         <menu>
             <item
-                android:id="@+id/nav_shareC"
+                android:id="@+id/nav_commercial_search"
                 android:icon="@drawable/comicon"
                 android:title="Commercial Search " />
 
             <item
-                android:id="@+id/nav_shareR"
+                android:id="@+id/nav_residential_search"
                 android:icon="@drawable/apartment"
                 android:title="Residential Search" />
             <item
-                android:id="@+id/nav_shareB"
+                android:id="@+id/nav_builder_search"
                 android:icon="@drawable/bui"
-                android:title="Builder Name Search" />
+                android:title="Builder Search" />
         </menu>
     </item>
 
@@ -45,15 +46,15 @@
         android:title="View Profile" />
 
     <item
-        android:id="@+id/nav_shareE"
+        android:id="@+id/nav_user_enquiry"
         android:icon="@drawable/support"
         android:title="Enquiry" />
     <item
-        android:id="@+id/nav_shareA"
+        android:id="@+id/nav_aboutus"
         android:icon="@drawable/info"
         android:title="About Us" />
     <item
-        android:id="@+id/nav_shareF"
+        android:id="@+id/nav_user_feedback"
         android:icon="@drawable/feedback"
         android:title="Feedback" />
 

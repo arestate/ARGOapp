@@ -33,6 +33,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home ,R.id.nav_shareVP)
+                R.id.nav_home,R.id.nav_builder_search,R.id.nav_aboutus,R.id.nav_commercial_search,R.id.nav_residential_search,R.id.nav_fav,R.id.nav_user_enquiry,R.id.nav_user_feedback,R.id.nav_shareVP)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -60,21 +61,14 @@ public class DashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_logout) {
-
             AllSharedPrefernces allSharedPrefernces = new AllSharedPrefernces(this);
             allSharedPrefernces.ClearAllData();
 
-
             Intent i = new Intent(DashboardActivity.this, SplashActivity.class);
             startActivity(i);
-
             finishAffinity();
-
             return true;
-
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

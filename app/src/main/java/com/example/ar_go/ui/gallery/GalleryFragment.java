@@ -47,8 +47,6 @@ public class GalleryFragment extends Fragment implements DataInterface {
         recvFeedback = (RecyclerView) root.findViewById(R.id.recycle_feedback);
         recvFeedback.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 
-        recvFeedback.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
-
         volley = new Webservice_Volley( getActivity() , this);
         HashMap<String, String> params = new HashMap<>();
         allSharedPrefernces=new AllSharedPrefernces(getActivity());

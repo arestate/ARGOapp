@@ -47,7 +47,6 @@ public class BuilderHomepage extends AppCompatActivity {
             AllSharedPrefernces allSharedPrefernces = new AllSharedPrefernces(this);
             allSharedPrefernces.ClearAllData();
 
-
             Intent i = new Intent(BuilderHomepage.this, SplashActivity.class);
             startActivity(i);
 

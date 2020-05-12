@@ -1,5 +1,6 @@
 package com.example.ar_go.Adapter;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,7 @@ public class RoomComponentsListAdapter extends RecyclerView.Adapter<RoomComponen
         }
 
         holder.txt_buildername.setText(roomComponentResultVo.getRRoom());
+        holder.txt_buildername.setTextColor(Color.WHITE);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -36,15 +36,11 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
     @Override  
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         FeedbackResultVo feedbackResultVo = listdata.get(position);
-
+        holder.f_date.setText(feedbackResultVo.getFDate());
         holder.txt_details.setText(feedbackResultVo.getFDetails());
         holder.ratingBar.setRating(Float.parseFloat(feedbackResultVo.getFRatings()));
         holder.txt_name.setText(feedbackResultVo.getPName());
-
-
-
     }  
   
   
@@ -57,7 +53,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {  
 
-        TextView txt_name,txt_details;
+        TextView txt_name,txt_details,f_date;
         RatingBar ratingBar;
 
 
@@ -65,6 +61,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
             super(itemView);  
 
             txt_name=(TextView)itemView.findViewById(R.id.pname);
+            f_date=(TextView)itemView.findViewById(R.id.f_date);
             txt_details = (TextView)itemView.findViewById(R.id.fdetails);
             ratingBar= (RatingBar)itemView.findViewById(R.id.ratings);
         }  

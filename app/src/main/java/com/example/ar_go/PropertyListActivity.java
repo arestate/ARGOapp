@@ -24,7 +24,7 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
     Webservice_Volley volley;
     RecyclerView recvBuilder;
 
-    String b_id;
+    String b_id,b_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,11 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
         recvBuilder.setLayoutManager(new GridLayoutManager(this,2));
 
         b_id = getIntent().getStringExtra("b_id");
+        b_name = getIntent().getStringExtra("b_name");
 
         volley = new Webservice_Volley(this, this);
+
+        getSupportActionBar().setTitle(b_name);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("b_id",b_id);
@@ -52,8 +55,6 @@ public class PropertyListActivity extends AppCompatActivity implements DataInter
     public void getData(JSONObject jsonObject, String tag) {
 
         try {
-
-           // Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
 
             PropertyinfoVo propertyinfoVo = new Gson().fromJson(jsonObject.toString(),PropertyinfoVo.class);
 

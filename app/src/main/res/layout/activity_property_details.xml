@@ -1,115 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_above="@+id/ll_bottom">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/img" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingTop="24dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="24dp">
+            android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/tvpname"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lilleria"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvaddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sama Savli, Vadodara"
-                android:textColor="@android:color/darker_gray"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/img" />
 
             <LinearLayout
-                android:id="@+id/ll_amenities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal">
+                android:layout_below="@+id/imageView"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="24dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="24dp">
+
+
+                <TextView
+                    android:id="@+id/tvpname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lilleria"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvaddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sama Savli, Vadodara"
+                    android:textColor="@android:color/darker_gray"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/ll_amenities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:orientation="horizontal">
+
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="DESCRIPTION"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvdescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="5dp"
+                    android:text="Apartment occupancy varies from six to ten residents. All rooms are single-occupancy rooms, while size varies considerably. The size of the rooms ranges from 9 to 18,5 square meters. All rooms are furnished with writing desk, chair, bookshelves, bed, mattress and curtains. Students supply any linens, rugs and decorations needed.
+Each occupant may freely use the apartments communal area: livingroom, bathroom and kitchen. Apartments have facilities which include some comfortable seating in the living room, a dining table and chairs in the kitchen or dining room; a stove, a microwave oven, two refridgerators and a freezer in the kitchen and a drying cupboard. Students provide their own dishes and cooking utensils. Occupants usually have some kind of arrangement on the communal use of pots and pans, coffeemakers etc." />
 
 
             </LinearLayout>
 
-            </HorizontalScrollView>
 
-            <TextView
+        </RelativeLayout>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="DESCRIPTION"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tvdescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:lineSpacingExtra="5dp"
-                android:text="Apartment occupancy varies from six to ten residents. All rooms are single-occupancy rooms, while size varies considerably. The size of the rooms ranges from 9 to 18,5 square meters. All rooms are furnished with writing desk, chair, bookshelves, bed, mattress and curtains. Students supply any linens, rugs and decorations needed.
-Each occupant may freely use the apartments communal area: livingroom, bathroom and kitchen. Apartments have facilities which include some comfortable seating in the living room, a dining table and chairs in the kitchen or dining room; a stove, a microwave oven, two refridgerators and a freezer in the kitchen and a drying cupboard. Students provide their own dishes and cooking utensils. Occupants usually have some kind of arrangement on the communal use of pots and pans, coffeemakers etc." />
-
-
-        </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabSize="normal"
-            android:src="@android:drawable/ic_menu_camera"
-            android:tint="@android:color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:layout_gravity="right"
-            android:onClick="ClickonCustomize"/>
+    </ScrollView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAdd2"
-            android:layout_width="wrap_content"
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_gravity="right"
+        android:layout_margin="16dp"
+        android:onClick="ClickonCustomize"
+        android:src="@android:drawable/ic_menu_camera"
+        android:tint="@android:color/white"
+        app:fabSize="normal" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_gravity="right"
+        android:layout_margin="16dp"
+        android:onClick="ClickonCustomize2"
+        android:src="@drawable/ar"
+        android:tint="@android:color/white"
+        app:fabSize="normal" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:fabSize="normal"
-            android:src="@drawable/ar"
-            android:tint="@android:color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:layout_gravity="right"
-            android:onClick="ClickonCustomize2"/>
-</LinearLayout>
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="POST ENQUIRY"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:onClick="ClickOnEnquiry"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="GIVE FEEDBACK"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:onClick="ClickOnFeedback"/>
+
+
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

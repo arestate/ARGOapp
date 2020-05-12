@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment implements DataInterface {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         recvBuilderhome = (RecyclerView)root.findViewById(R.id.recvBuilderhome);

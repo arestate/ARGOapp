@@ -11,23 +11,23 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_dashboard" />
 
-<!--    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.ar_go.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/nav_fav"
+        android:name="com.example.ar_go.ui.favorites.FavoritesFragment"
+        android:label="Favourite Property"
+        tools:layout="@layout/fragment_favorites" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.ar_go.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_user_feedback"
+        android:name="com.example.ar_go.ui.feedbacks.UserFeedbackListFragment"
+        android:label="Your Feedbacks"
+        tools:layout="@layout/fragment_user_feedback_list" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.ar_go.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />-->
+        android:id="@+id/nav_user_enquiry"
+        android:name="com.example.ar_go.ui.enquiry.UserEnquiryListFragment"
+        android:label="Your Enquiries"
+        tools:layout="@layout/fragment_user_enquiry_list" />
 
     <fragment
         android:id="@+id/nav_shareVP"
@@ -35,9 +35,29 @@
         android:label="My Profile"
         tools:layout="@layout/fragment_share" />
 
-   <!-- <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.ar_go.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />-->
+    <fragment
+        android:id="@+id/nav_aboutus"
+        android:name="com.example.ar_go.ui.aboutus.AboutUsFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/nav_commercial_search"
+        android:name="com.example.ar_go.ui.propertysearch.PropertySearchFragment1"
+        android:label="Commercial Property"
+        tools:layout="@layout/fragment_property_search" />
+
+    <fragment
+        android:id="@+id/nav_residential_search"
+        android:name="com.example.ar_go.ui.propertysearch.PropertySearchFragment"
+        android:label="Residential Property"
+        tools:layout="@layout/fragment_property_search" />
+
+    <fragment
+        android:id="@+id/nav_builder_search"
+        android:name="com.example.ar_go.ui.buildersearch.BuilderSearchFragment"
+        android:label="Search Builder"
+        tools:layout="@layout/fragment_builder_search" />
+
+
 </navigation>

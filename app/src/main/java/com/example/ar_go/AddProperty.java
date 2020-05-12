@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -27,6 +30,7 @@ import com.example.ar_go.utils.CommonFunctions;
 import com.example.ar_go.utils.Constants;
 import com.example.ar_go.utils.DataInterface;
 import com.example.ar_go.utils.Webservice_Volley;
+import com.google.android.gms.maps.model.LatLng;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.ResponseHandlerInterface;
@@ -40,8 +44,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -174,10 +180,11 @@ AddProperty extends AppCompatActivity implements DataInterface {
                 params.put("p_amenities",edtamenities.getText().toString());
                 params.put("p_external_photo", external_image_path);
                 params.put("p_internal_photo", internal_image_path);
-                params.put("p_latitude", "73.15");
-                params.put("p_longitude", "23.31");
 
+                LatLng latLng = getLocationFromAddress(AddProperty.this,edtaddress.getText().toString());
 
+                params.put("p_latitude",(latLng == null) ? "" : "" + latLng.latitude);
+                params.put("p_longitude",(latLng == null) ? "" : "" + latLng.longitude);
 
                 String url = Constants.Webserive_Url + "add_property.php";
 
@@ -478,5 +485,27 @@ AddProperty extends AppCompatActivity implements DataInterface {
     public void ClickonSelectExternalImages(View view) {
         IMAGE_MODE = 222;
         ImagePicker.pickImage(AddProperty.this, 222);
+    }
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 }
